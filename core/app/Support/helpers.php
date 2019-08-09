@@ -142,3 +142,17 @@ function lang($key)
 
     return trans($key);
 }
+
+function date_diff_in_minutes(\Carbon\Carbon $start, \Carbon\Carbon $finish)
+{
+    $totalDuration = $start->diffInMinutes($finish);
+
+    return $totalDuration;
+}
+
+function date_diff_in_days(\Carbon\Carbon $start, \Carbon\Carbon $finish)
+{
+    $totalDuration = $start->diffInDays($finish);
+
+    return $totalDuration;
+}

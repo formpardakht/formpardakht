@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Config;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
@@ -71,7 +72,15 @@ class UpdateController extends Controller
         $latestRelease = curl_get(config('app.update_url'));
 
         if ($latestRelease) {
+            Config::where('key', '=', 'update_last_check')->update([
+                'value' => date('Y-m-d H:i:s'),
+            ]);
+
             if (isset($latestRelease->version) && version_compare($latestRelease->version, config('app.version')) > 0) {
+                Config::where('key', '=', 'update_new_release')->update([
+                    'value' => $latestRelease->version,
+                ]);
+
                 return $latestRelease;
             }
         }
