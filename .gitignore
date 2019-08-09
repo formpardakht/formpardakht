@@ -1,0 +1,7 @@
+/core/node_modules
+/core/storage/*.key
+/core/.env
+/core/.phpunit.result.cache
+/.idea
+/tmp/*
+/storage
