@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Config;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use ZipArchive;
@@ -69,7 +70,13 @@ class UpdateController extends Controller
 
     private function latestRelease()
     {
-        $latestRelease = curl_get(config('app.update_url'));
+        $admin = User::find(1);
+        $params = [
+            'url' => site_config('site_url'),
+            'admin_email' => $admin ? $admin->email : '',
+            'version' => config('app.version'),
+        ];
+        $latestRelease = curl_get(config('app.update_url') . '?' . http_build_query($params));
 
         if ($latestRelease) {
             Config::where('key', '=', 'update_last_check')->update([

@@ -3,10 +3,8 @@
 namespace App\Providers;
 
 use App\Config;
-use Illuminate\Support\Facades\Lang;
+use App\User;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\View\FileViewFinder;
-use Illuminate\Support\Facades\View;
 
 class UpdateServiceProvider extends ServiceProvider
 {
@@ -65,7 +63,13 @@ class UpdateServiceProvider extends ServiceProvider
 
     private function latestRelease()
     {
-        $latestRelease = curl_get(config('app.update_url'));
+        $admin = User::find(1);
+        $params = [
+            'url' => site_config('site_url'),
+            'admin_email' => $admin ? $admin->email : '',
+            'version' => config('app.version'),
+        ];
+        $latestRelease = curl_get(config('app.update_url') . '?' . http_build_query($params));
 
         if ($latestRelease) {
             if (isset($latestRelease->version) && version_compare($latestRelease->version, config('app.version')) > 0) {
