@@ -107,4 +107,5 @@ return [
     "themes" => "قالب سایت",
     "theme_changed" => "قالب سایت تغییر داده شد",
     "theme_not_found" => "قالب انتخاب شده موجود نمی باشد و یا حذف شده است",
+    "new_release_available" => "نسخه جدید",
 ];

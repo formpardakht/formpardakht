@@ -3,10 +3,7 @@
 namespace App\Providers;
 
 use App\Config;
-use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\View\FileViewFinder;
-use Illuminate\Support\Facades\View;
 
 class ThemeServiceProvider extends ServiceProvider
 {
