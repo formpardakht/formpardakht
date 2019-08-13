@@ -114,6 +114,58 @@ class InstallController extends Controller
         }
     }
 
+    public function completeEZInstallation(Request $request)
+    {
+        if (!$this->isAllowed()) {
+            return redirect()->route('login');
+        }
+
+        try {
+            Artisan::call('migrate:refresh', ['--force' => '--force']);
+            Artisan::call('key:generate');
+
+            return DB::transaction(function () use ($request) {
+                User::create([
+                    'name' => 'مدیر سیستم',
+                    'email' => $request->admin_email,
+                    'password' => bcrypt($request->admin_password),
+                ]);
+
+                Config::create([
+                    'key' => 'site_url',
+                    'value' => $request->site_url,
+                    'label' => 'آدرس سایت',
+                ]);
+                Config::create([
+                    'key' => 'site_title',
+                    'value' => $request->site_title,
+                    'label' => 'عنوان سایت',
+                ]);
+                Config::create([
+                    'key' => 'site_description',
+                    'value' => '',
+                    'label' => 'توضیحات سایت',
+                ]);
+
+                Artisan::call('db:seed', ['--force' => '--force']);
+
+                if (file_exists(base_path('../install.php'))) {
+                    unlink(base_path('../install.php'));
+                }
+
+                if (file_exists(base_path('../latest.zip'))) {
+                    unlink(base_path('../latest.zip'));
+                }
+
+                return redirect()->to('login');
+            });
+        } catch (\Exception $e) {
+            return redirect()->route('install')
+                ->with('alert', 'danger')
+                ->with('message', $e->getMessage());
+        }
+    }
+
     private function isAllowed()
     {
         try {

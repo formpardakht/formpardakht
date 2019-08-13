@@ -4,6 +4,7 @@ Route::get('install', 'InstallController@index')->name('install');
 Route::post('install', 'InstallController@install');
 Route::get('install/complete', 'InstallController@showComplete')->name('install-complete');
 Route::post('install/complete', 'InstallController@complete');
+Route::get('install/complete-ez', 'InstallController@completeEZInstallation')->name('install-complete-ez');
 
 Route::group(['middleware' => 'check-installation'], function () {
     Route::get('login', 'Auth\AuthController@getLogin')->name('login');
