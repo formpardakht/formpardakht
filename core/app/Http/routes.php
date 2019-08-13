@@ -58,5 +58,6 @@ Route::group(['middleware' => 'check-installation'], function () {
 
         Route::get('themes', 'Admin\ThemeController@index')->name('admin-themes');
         Route::get('themes/update/{slug}', 'Admin\ThemeController@update')->name('admin-themes-update');
+        Route::post('themes/install', 'Admin\ThemeController@installFromSource')->name('admin-themes-install');
     });
 });

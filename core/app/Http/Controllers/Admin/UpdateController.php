@@ -62,7 +62,7 @@ class UpdateController extends Controller
         Artisan::call('migrate');
 
         Config::where('key', '=', 'update_new_release')->update([
-            'value' => ''
+            'value' => '',
         ]);
 
         $this->cleanUpRoot();
@@ -80,20 +80,24 @@ class UpdateController extends Controller
             'admin_email' => $admin ? $admin->email : '',
             'version' => config('app.version'),
         ];
-        $latestRelease = curl_get(config('app.update_url') . '?' . http_build_query($params));
+        try {
+            $latestRelease = curl_get(config('app.update_url') . '?' . http_build_query($params), 5);
 
-        if ($latestRelease) {
-            Config::where('key', '=', 'update_last_check')->update([
-                'value' => date('Y-m-d H:i:s'),
-            ]);
-
-            if (isset($latestRelease->version) && version_compare($latestRelease->version, config('app.version')) > 0) {
-                Config::where('key', '=', 'update_new_release')->update([
-                    'value' => $latestRelease->version,
+            if ($latestRelease) {
+                Config::where('key', '=', 'update_last_check')->update([
+                    'value' => date('Y-m-d H:i:s'),
                 ]);
 
-                return $latestRelease;
+                if (isset($latestRelease->version) && version_compare($latestRelease->version, config('app.version')) > 0) {
+                    Config::where('key', '=', 'update_new_release')->update([
+                        'value' => $latestRelease->version,
+                    ]);
+
+                    return $latestRelease;
+                }
             }
+        } catch (\Exception $e) {
+            //
         }
 
         return null;
