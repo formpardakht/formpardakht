@@ -17,8 +17,8 @@
                 <p>{!! nl2br2($form->description) !!}</p>
               @endif
               @if($form->image)
-                <a href="{{ theme_asset($form->image) }}" target="_blank">
-                  <img src="{{ theme_asset($form->image) }}" class="img-thumbnail mb-3" alt="{{ $form->title }}">
+                <a href="{{ asset($form->image) }}" target="_blank">
+                  <img src="{{ asset($form->image) }}" class="img-thumbnail mb-3" alt="{{ $form->title }}">
                 </a>
               @endif
               @if($form->fields)
