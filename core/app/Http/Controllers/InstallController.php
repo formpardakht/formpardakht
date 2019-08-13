@@ -120,6 +120,10 @@ class InstallController extends Controller
             unlink(base_path('../install.php'));
         }
 
+        if (file_exists(base_path('../install.css'))) {
+            unlink(base_path('../install.css'));
+        }
+
         if (file_exists(base_path('../latest.zip'))) {
             unlink(base_path('../latest.zip'));
         }
