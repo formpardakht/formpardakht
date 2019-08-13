@@ -116,6 +116,14 @@ class InstallController extends Controller
 
     public function completeEZInstallation(Request $request)
     {
+        if (file_exists(base_path('../install.php'))) {
+            unlink(base_path('../install.php'));
+        }
+
+        if (file_exists(base_path('../latest.zip'))) {
+            unlink(base_path('../latest.zip'));
+        }
+
         if (!$this->isAllowed()) {
             return redirect()->route('login');
         }
@@ -148,14 +156,6 @@ class InstallController extends Controller
                 ]);
 
                 Artisan::call('db:seed', ['--force' => '--force']);
-
-                if (file_exists(base_path('../install.php'))) {
-                    unlink(base_path('../install.php'));
-                }
-
-                if (file_exists(base_path('../latest.zip'))) {
-                    unlink(base_path('../latest.zip'));
-                }
 
                 return redirect()->to('login');
             });

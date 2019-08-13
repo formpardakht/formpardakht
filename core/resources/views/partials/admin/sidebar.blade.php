@@ -8,7 +8,7 @@
         <a href="{{ route('admin-security-settings') }}" class="list-group-item list-group-item-action @if(isset($activeMenu) && $activeMenu == 'security-settings') active @endif">{{ lang('lang.security_settings') }}</a>
         <a href="{{ route('admin-update') }}" class="list-group-item list-group-item-action @if(isset($activeMenu) && $activeMenu == 'update') active @endif">
             {{ lang('lang.update') }}
-            @if(site_config('update_new_release'))
+            @if(site_config('update_new_release') && version_compare(site_config('update_new_release'), config('app.version')) > 0)
                 <span class="badge badge-danger float-left">{{ lang('lang.new_release_available') }}</span>
             @endif
         </a>

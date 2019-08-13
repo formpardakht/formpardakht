@@ -61,6 +61,10 @@ class UpdateController extends Controller
     {
         Artisan::call('migrate');
 
+        Config::where('key', '=', 'update_new_release')->update([
+            'value' => ''
+        ]);
+
         $this->cleanUpRoot();
 
         return redirect()->route('admin-update')
