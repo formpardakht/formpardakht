@@ -27,7 +27,7 @@
         <div class="card-body">
             @foreach($themes as $theme)
                 <a href="{{ route('admin-themes-update', ['slug' => $theme['slug']]) }}" class="card box @if(site_config('theme') == $theme['slug']) active @endif">
-                    <div class="card-body" style="background-image: url('{{ $theme["screenshot"] }}')" title="{{ $theme['author'] }}"></div>
+                    <div class="card-body" style="background-image: url('{{ isset($theme["screenshot"]) ? $theme["screenshot"] : asset('assets/img/no-screenshot.png') }}')" title="{{ $theme['author'] }}"></div>
                     <div class="card-footer">
                         <p>{{ $theme['name'] }}</p>
                         <b>{{ lang('lang.version') }}: {{ $theme['version'] }}</b>
@@ -59,8 +59,9 @@
             padding: 10px;
             position: relative;
             background-repeat: no-repeat;
-            background-size: contain;
             background-origin: content-box;
+            background-size: contain;
+            background-position: center;
         }
 
         .card.box.active {
