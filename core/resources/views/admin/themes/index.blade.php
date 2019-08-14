@@ -12,7 +12,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <input type="file" class="form-control" name="file">
+                            <input type="file" name="file">
                         </div>
                         <div class="form-group">
                             <button class="btn btn-success">{{ lang('lang.install') }}</button>
