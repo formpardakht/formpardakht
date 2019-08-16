@@ -19,3 +19,18 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+<Files ~ "\.env$">
+  Order allow,deny
+  Deny from all
+</Files>
+
+<Files ~ "\.env.example$">
+  Order allow,deny
+  Deny from all
+</Files>
+
+<Files ~ "\.env.init$">
+  Order allow,deny
+  Deny from all
+</Files>
