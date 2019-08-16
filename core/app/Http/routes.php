@@ -48,6 +48,8 @@ Route::group(['middleware' => 'check-installation'], function () {
 
         Route::get('configs', 'Admin\ConfigController@index')->name('admin-configs');
         Route::post('configs', 'Admin\ConfigController@edit');
+        Route::post('configs/scripts', 'Admin\ConfigController@scripts')->name('admin-configs-scripts');
+        Route::post('configs/styles', 'Admin\ConfigController@styles')->name('admin-configs-styles');
 
         Route::get('security-settings', 'Admin\SecuritySettingController@index')->name('admin-security-settings');
         Route::post('security-settings/change-password', 'Admin\SecuritySettingController@changePassword')->name('admin-security-settings-change-password');

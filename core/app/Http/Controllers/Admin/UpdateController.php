@@ -6,6 +6,7 @@ use App\Config;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use ZipArchive;
 
@@ -65,6 +66,8 @@ class UpdateController extends Controller
             'value' => '',
         ]);
 
+        $this->updateDB();
+
         $this->cleanUpRoot();
 
         return redirect()->route('admin-update')
@@ -120,5 +123,10 @@ class UpdateController extends Controller
         if (file_exists(base_path('../tmp'))) {
             File::deleteDirectory(base_path('../tmp'));
         }
+    }
+
+    private function updateDB()
+    {
+        DB::statement('ALTER TABLE configs MODIFY COLUMN value longtext');
     }
 }
