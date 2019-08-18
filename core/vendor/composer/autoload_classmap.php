@@ -17,5 +17,4 @@ return array(
     'FormsTableSeeder' => $baseDir . '/database/seeds/FormsTableSeeder.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
-    'TestCase' => $baseDir . '/tests/TestCase.php',
 );

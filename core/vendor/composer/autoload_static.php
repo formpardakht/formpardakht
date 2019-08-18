@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitcc9210e519f1afec598572c2b8194f9d
+class ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -69,6 +69,10 @@ class ComposerStaticInitcc9210e519f1afec598572c2b8194f9d
         'I' => 
         array (
             'Illuminate\\' => 11,
+        ),
+        'D' => 
+        array (
+            'Doctrine\\Common\\Inflector\\' => 26,
         ),
         'C' => 
         array (
@@ -190,6 +194,10 @@ class ComposerStaticInitcc9210e519f1afec598572c2b8194f9d
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
+        'Doctrine\\Common\\Inflector\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
+        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
@@ -229,10 +237,6 @@ class ComposerStaticInitcc9210e519f1afec598572c2b8194f9d
             array (
                 0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
             ),
-            'Doctrine\\Common\\Inflector\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
-            ),
         ),
     );
 
@@ -248,17 +252,16 @@ class ComposerStaticInitcc9210e519f1afec598572c2b8194f9d
         'FormsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/FormsTableSeeder.php',
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
         'SessionHandlerInterface' => __DIR__ . '/..' . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
-        'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitcc9210e519f1afec598572c2b8194f9d::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitcc9210e519f1afec598572c2b8194f9d::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitcc9210e519f1afec598572c2b8194f9d::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitcc9210e519f1afec598572c2b8194f9d::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitcc9210e519f1afec598572c2b8194f9d::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac::$classMap;
 
         }, null, ClassLoader::class);
     }
