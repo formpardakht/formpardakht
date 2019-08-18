@@ -41,6 +41,12 @@ class ConfigController extends Controller
 
     public function scripts(Request $request)
     {
+        if (app()->environment() === 'demo') {
+            return redirect()->back()
+                ->with('alert', 'warning')
+                ->with('message', lang('lang.demo_mode'));
+        }
+
         $scripts = Config::where('key', '=', 'scripts')->first();
         if (!$scripts) {
             $scripts = Config::create(['key' => 'scripts', 'value' => '', 'visible' => 0]);
@@ -55,6 +61,12 @@ class ConfigController extends Controller
 
     public function styles(Request $request)
     {
+        if (app()->environment() === 'demo') {
+            return redirect()->back()
+                ->with('alert', 'warning')
+                ->with('message', lang('lang.demo_mode'));
+        }
+
         $styles = Config::where('key', '=', 'styles')->first();
         if (!$styles) {
             $styles = Config::create(['key' => 'styles', 'value' => '', 'visible' => 0]);
