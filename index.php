@@ -30,9 +30,6 @@ if (!file_exists(__DIR__ . '/core/config.php')) {
     if (file_exists(__DIR__ . '/core/.env')) {
         unlink(__DIR__ . '/core/.env');
     }
-
-    header('location:./');
-    die();
 }
 
 /*

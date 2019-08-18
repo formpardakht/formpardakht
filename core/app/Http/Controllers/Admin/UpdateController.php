@@ -39,7 +39,7 @@ class UpdateController extends Controller
                         $zip->close();
                         copy(base_path('update-installer.php'), base_path('/../update-installer.php'));
 
-                        return redirect(site_config('site_url') . '/update-installer.php?finishUrl=' . site_config('site_url') . '/admin/update/finish');
+                        return redirect(site_config('site_url') . '/update-installer.php?finishUrl=' . url('/admin/update/finish'));
                     }
                 } catch (\Exception $e) {
                     dd($e->getMessage());
@@ -115,6 +115,9 @@ class UpdateController extends Controller
         }
         if (file_exists(base_path('../tmp'))) {
             File::deleteDirectory(base_path('../tmp'));
+        }
+        if (file_exists(base_path('../update-installer.php'))) {
+            File::deleteDirectory(base_path('../update-installer.php'));
         }
     }
 }
