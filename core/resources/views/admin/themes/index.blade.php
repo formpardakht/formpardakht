@@ -25,15 +25,19 @@
     <div class="card mt-3">
         <div class="card-header">{{ lang('lang.themes') }}</div>
         <div class="card-body">
-            @foreach($themes as $theme)
-                <a href="{{ route('admin-themes-update', ['slug' => $theme['slug']]) }}" class="card box @if(site_config('theme') == $theme['slug']) active @endif">
-                    <div class="card-body" style="background-image: url('{{ isset($theme["screenshot"]) ? $theme["screenshot"] : asset('assets/img/no-screenshot.png') }}')" title="{{ $theme['author'] }}"></div>
-                    <div class="card-footer">
-                        <p>{{ $theme['name'] }}</p>
-                        <b>{{ lang('lang.version') }}: {{ $theme['version'] }}</b>
-                    </div>
-                </a>
-            @endforeach
+            @if(count($themes))
+                @foreach($themes as $theme)
+                    <a href="{{ route('admin-themes-update', ['slug' => $theme['slug']]) }}" class="card box @if(site_config('theme') == $theme['slug']) active @endif">
+                        <div class="card-body" style="background-image: url('{{ isset($theme["screenshot"]) ? $theme["screenshot"] : asset('assets/img/no-screenshot.png') }}')" title="{{ $theme['author'] }}"></div>
+                        <div class="card-footer">
+                            <p>{{ $theme['name'] }}</p>
+                            <b>{{ lang('lang.version') }}: {{ $theme['version'] }}</b>
+                        </div>
+                    </a>
+                @endforeach
+            @else
+                <div class="alert alert-warning">هنوز قالبی نصب نکرده اید.</div>
+            @endif
         </div>
     </div>
 @endsection
