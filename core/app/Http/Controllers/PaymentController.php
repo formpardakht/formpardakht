@@ -68,11 +68,7 @@ class PaymentController extends Controller
 
             return $this->showReceipt($transaction);
         } catch (\Exception $e) {
-            if (env('APP_ENV') === 'local') {
-                throw $e;
-            } else {
-                abort(500);
-            }
+            throw $e;
         }
     }
 
