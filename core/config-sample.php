@@ -11,12 +11,5 @@ return [
     'DB_USERNAME' => '',
     'DB_PASSWORD' => '',
     'CACHE_DRIVER' => 'file',
-    'SESSION_DRIVER' => 'file',
-    'QUEUE_DRIVER' => 'sync',
-    'MAIL_DRIVER' => 'smtp',
-    'MAIL_HOST' => '127.0.0.1',
-    'MAIL_PORT' => '25',
-    'MAIL_USERNAME' => '',
-    'MAIL_PASSWORD' => '',
-    'MAIL_ENCRYPTION' => '',
+    'SESSION_DRIVER' => 'file'
 ];
