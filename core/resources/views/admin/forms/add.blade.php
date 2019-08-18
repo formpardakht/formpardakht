@@ -33,7 +33,7 @@
                 <label for="file-image" class="label">{{ lang('lang.image') }} ({{ lang('lang.optional') }})</label>
                 <input type="file" class="form-control" id="file-image" name="image" accept="image/*">
               </div>
-              <div class="form-group py-3 px-3" style="background: oldlace">
+              <div class="form-group">
                 <label class="label">{{ lang('lang.fields') }} ({{ lang('lang.optional') }})</label>
                 <a href="javascript:" class="float-left" onclick="addNewField()">{{ lang('lang.add_new_field') }}</a>
                 <div id="fields">
