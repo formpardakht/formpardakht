@@ -2,7 +2,7 @@
 
 return [
 
-    'version' => '2.1.0',
+    'version' => '2.1.1',
     'update_url' => 'https://formpardakht.com/release.json',
 
     /*
@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'debug' => SITE_CONFIG['APP_DEBUG'],
+    'debug' => app('site_configs')['APP_DEBUG'],
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'url' => SITE_CONFIG['APP_URL'],
+    'url' => app('site_configs')['APP_URL'],
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'key' => SITE_CONFIG['APP_KEY'],
+    'key' => app('site_configs')['APP_KEY'],
 
     'cipher' => 'AES-256-CBC',
 
