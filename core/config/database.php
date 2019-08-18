@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => SITE_CONFIG['DB_CONNECTION'],
+    'default' => app('site_configs')['DB_CONNECTION'],
 
     /*
     |--------------------------------------------------------------------------
@@ -54,10 +54,10 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => SITE_CONFIG['DB_HOST'],
-            'database' => SITE_CONFIG['DB_DATABASE'],
-            'username' => SITE_CONFIG['DB_USERNAME'],
-            'password' => SITE_CONFIG['DB_PASSWORD'],
+            'host' => app('site_configs')['DB_HOST'],
+            'database' => app('site_configs')['DB_DATABASE'],
+            'username' => app('site_configs')['DB_USERNAME'],
+            'password' => app('site_configs')['DB_PASSWORD'],
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
@@ -66,10 +66,10 @@ return [
 
         'pgsql' => [
             'driver' => 'pgsql',
-            'host' => SITE_CONFIG['DB_HOST'],
-            'database' => SITE_CONFIG['DB_DATABASE'],
-            'username' => SITE_CONFIG['DB_USERNAME'],
-            'password' => SITE_CONFIG['DB_PASSWORD'],
+            'host' => app('site_configs')['DB_HOST'],
+            'database' => app('site_configs')['DB_DATABASE'],
+            'username' => app('site_configs')['DB_USERNAME'],
+            'password' => app('site_configs')['DB_PASSWORD'],
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
@@ -77,10 +77,10 @@ return [
 
         'sqlsrv' => [
             'driver' => 'sqlsrv',
-            'host' => SITE_CONFIG['DB_HOST'],
-            'database' => SITE_CONFIG['DB_DATABASE'],
-            'username' => SITE_CONFIG['DB_USERNAME'],
-            'password' => SITE_CONFIG['DB_PASSWORD'],
+            'host' => app('site_configs')['DB_HOST'],
+            'database' => app('site_configs')['DB_DATABASE'],
+            'username' => app('site_configs')['DB_USERNAME'],
+            'password' => app('site_configs')['DB_PASSWORD'],
             'charset' => 'utf8',
             'prefix' => '',
         ],

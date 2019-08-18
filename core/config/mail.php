@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => SITE_CONFIG['MAIL_DRIVER'],
+    'driver' => app('site_configs')['MAIL_DRIVER'],
 
     /*
     |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => SITE_CONFIG['MAIL_HOST'],
+    'host' => app('site_configs')['MAIL_HOST'],
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'port' => SITE_CONFIG['MAIL_PORT'],
+    'port' => app('site_configs')['MAIL_PORT'],
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'encryption' => SITE_CONFIG['MAIL_ENCRYPTION'],
+    'encryption' => app('site_configs')['MAIL_ENCRYPTION'],
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'username' => SITE_CONFIG['MAIL_USERNAME'],
+    'username' => app('site_configs')['MAIL_USERNAME'],
 
     /*
     |--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return [
     |
     */
 
-    'password' => SITE_CONFIG['MAIL_PASSWORD'],
+    'password' => app('site_configs')['MAIL_PASSWORD'],
 
     /*
     |--------------------------------------------------------------------------

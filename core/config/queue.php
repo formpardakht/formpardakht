@@ -87,7 +87,7 @@ return [
     */
 
     'failed' => [
-        'database' => SITE_CONFIG['DB_CONNECTION'],
+        'database' => app('site_configs')['DB_CONNECTION'],
         'table'    => 'failed_jobs',
     ],
 

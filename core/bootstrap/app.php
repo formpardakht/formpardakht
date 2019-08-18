@@ -1,7 +1,5 @@
 <?php
 
-define('SITE_CONFIG', require_once __DIR__ . '/../config.php');
-
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -27,6 +25,10 @@ $app = new Illuminate\Foundation\Application(
 | incoming requests to this application from both the web and CLI.
 |
 */
+
+$app->singleton('site_configs', function () {
+    return require(__DIR__ . '/../config.php');
+});
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
