@@ -20,7 +20,7 @@ class ConfigController extends Controller
 
     public function edit(Request $request)
     {
-        if (app()->environment() === 'demo') {
+        if (app('site_configs')['APP_ENV'] === 'demo') {
             return redirect()->back()
                 ->with('alert', 'warning')
                 ->with('message', lang('lang.demo_mode'));
@@ -41,7 +41,7 @@ class ConfigController extends Controller
 
     public function scripts(Request $request)
     {
-        if (app()->environment() === 'demo') {
+        if (app('site_configs')['APP_ENV'] === 'demo') {
             return redirect()->back()
                 ->with('alert', 'warning')
                 ->with('message', lang('lang.demo_mode'));
@@ -61,7 +61,7 @@ class ConfigController extends Controller
 
     public function styles(Request $request)
     {
-        if (app()->environment() === 'demo') {
+        if (app('site_configs')['APP_ENV'] === 'demo') {
             return redirect()->back()
                 ->with('alert', 'warning')
                 ->with('message', lang('lang.demo_mode'));

@@ -51,7 +51,7 @@ class ThemeController extends Controller
 
     public function installFromSource(Request $request)
     {
-        if (app()->environment() == 'demo') {
+        if (app('site_configs')['APP_ENV'] == 'demo') {
             return redirect()->back()
                 ->with('alert', 'warning')
                 ->with('message', lang('lang.demo_mode'));

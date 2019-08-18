@@ -157,7 +157,7 @@ class FactorController extends Controller
 
     public function delete(Request $request, $id)
     {
-        if (app()->environment() === 'demo') {
+        if (app('site_configs')['APP_ENV'] === 'demo') {
             return redirect()->back()
                 ->with('alert', 'warning')
                 ->with('message', lang('lang.demo_mode'));

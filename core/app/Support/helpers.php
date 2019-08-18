@@ -89,7 +89,7 @@ function site_config($key)
 
 function handle_exception(\Exception $e)
 {
-    if (app()->environment() == 'local') {
+    if (app('site_configs')['APP_ENV'] == 'local') {
         return redirect()->back()
             ->with('alert', 'danger')
             ->with('message', $e->getMessage());

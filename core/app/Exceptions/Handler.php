@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
             return Response::make(view('fp::errors.404'));
         }
 
-        if (app()->environment() == 'production') {
+        if (app('site_configs')['APP_ENV'] == 'production') {
             return Response::make(view('fp::errors.500'));
         }
 
