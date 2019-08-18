@@ -117,7 +117,16 @@ class UpdateController extends Controller
             File::deleteDirectory(base_path('../tmp'));
         }
         if (file_exists(base_path('../update-installer.php'))) {
-            File::deleteDirectory(base_path('../update-installer.php'));
+            unlink(base_path('../update-installer.php'));
+        }
+        if (file_exists(base_path('.env'))) {
+            unlink(base_path('.env'));
+        }
+        if (file_exists(base_path('.env.init'))) {
+            unlink(base_path('.env.init'));
+        }
+        if (file_exists(base_path('.env.example'))) {
+            unlink(base_path('.env.example'));
         }
     }
 }
