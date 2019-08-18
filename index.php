@@ -1,9 +1,35 @@
 <?php
 
-if (!file_exists(__DIR__ . '/core/.env')) {
-    copy(__DIR__ . '/core/.env.init', __DIR__ . '/core/.env');
-    header('location:./');
-    die();
+if (!file_exists(__DIR__ . '/core/config.php')) {
+    $sampleConfig = require(__DIR__ . '/core/config-sample.php');
+    if (file_exists(__DIR__ . '/core/.env')) {
+        $env = fopen(__DIR__ . '/core/.env', "r");
+        while (!feof($env)) {
+            $line = fgets($env);
+            $envLine = explode('=', $line);
+            if (count($envLine) > 1) {
+                $sampleConfig[$envLine[0]] = '"' . trim(preg_replace('/\s\s+/', ' ', $envLine[1])) . '",';
+            }
+        }
+    } else {
+        foreach ($sampleConfig as $key => $value) {
+            $sampleConfig[$key] = '"' . $value . '",';
+        }
+        $sampleConfig['APP_URL'] = '"localhost",';
+        $sampleConfig['DB_HOST'] = '"localhost",';
+        $sampleConfig['DB_DATABASE'] = '"",';
+        $sampleConfig['DB_USERNAME'] = '"",';
+        $sampleConfig['DB_PASSWORD'] = '"",';
+    }
+
+    $config = print_r($sampleConfig, true);
+    $config = str_replace("[", '"', $config);
+    $config = str_replace("]", '"', $config);
+    file_put_contents(__DIR__ . '/core/config.php', '<?php return ' . $config . ';');
+
+    if (file_exists(__DIR__ . '/core/.env')) {
+        unlink(__DIR__ . '/core/.env');
+    }
 }
 
 /*
@@ -18,7 +44,7 @@ if (!file_exists(__DIR__ . '/core/.env')) {
 |
 */
 
-require __DIR__.'/core/bootstrap/autoload.php';
+require __DIR__ . '/core/bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +58,7 @@ require __DIR__.'/core/bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__.'/core/bootstrap/app.php';
+$app = require_once __DIR__ . '/core/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
