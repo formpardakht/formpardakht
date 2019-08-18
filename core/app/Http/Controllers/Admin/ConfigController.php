@@ -43,10 +43,10 @@ class ConfigController extends Controller
     {
         $scripts = Config::where('key', '=', 'scripts')->first();
         if (!$scripts) {
-            $scripts = Config::create(['key' => 'scripts', 'value' => '']);
+            $scripts = Config::create(['key' => 'scripts', 'value' => '', 'visible' => 0]);
         }
 
-        $scripts->update(['value' => $request->scripts]);
+        $scripts->update(['value' => $request->scripts, 'visible' => 0]);
 
         return redirect()->back()
             ->with('alert', 'success')
@@ -57,10 +57,10 @@ class ConfigController extends Controller
     {
         $styles = Config::where('key', '=', 'styles')->first();
         if (!$styles) {
-            $styles = Config::create(['key' => 'styles', 'value' => '']);
+            $styles = Config::create(['key' => 'styles', 'value' => '', 'visible' => 0]);
         }
 
-        $styles->update(['value' => $request->styles]);
+        $styles->update(['value' => $request->styles, 'visible' => 0]);
 
         return redirect()->back()
             ->with('alert', 'success')

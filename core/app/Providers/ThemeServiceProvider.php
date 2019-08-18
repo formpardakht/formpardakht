@@ -19,7 +19,7 @@ class ThemeServiceProvider extends ServiceProvider
             if (!$theme) {
                 $theme = Config::create([
                     'key' => 'theme',
-                    'value' => 'purple',
+                    'value' => 'pulse',
                     'label' => 'قالب سایت',
                     'visible' => false,
                 ]);

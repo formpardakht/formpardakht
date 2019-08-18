@@ -38,14 +38,21 @@ class InstallController extends Controller
         ];
         $this->validate($request, $rules);
 
-        $env = file_get_contents(base_path('.env.example'));
-        $env = str_replace('{SITE_URL}', $request->site_url, $env);
-        $env = str_replace('{DB_HOST}', $request->db_host, $env);
-        $env = str_replace('{DB_NAME}', $request->db_name, $env);
-        $env = str_replace('{DB_USERNAME}', $request->db_username, $env);
-        $env = str_replace('{DB_PASSWORD}', $request->db_password, $env);
+        $sampleConfig = require(base_path('config-sample.php'));
+        foreach ($sampleConfig as $key => $value) {
+            $sampleConfig[$key] = '"' . $value . '",';
+        }
+        $sampleConfig['APP_URL'] = '"' . $request->site_url . '",';
+        $sampleConfig['DB_HOST'] = '"' . $request->db_host . '",';
+        $sampleConfig['DB_DATABASE'] = '"' . $request->db_name . '",';
+        $sampleConfig['DB_USERNAME'] = '"' . $request->db_username . '",';
+        $sampleConfig['DB_PASSWORD'] = '"' . $request->db_password . '",';
 
-        file_put_contents(base_path('.env'), $env);
+        $config = print_r($sampleConfig, true);
+        $config = str_replace("[", '"', $config);
+        $config = str_replace("]", '"', $config);
+
+        file_put_contents(base_path('config.php'), '<?php return ' . $config . ';');
 
         return redirect()->route('install-complete')
             ->withInput($request->all());

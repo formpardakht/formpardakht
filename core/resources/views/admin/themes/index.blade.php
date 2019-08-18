@@ -3,7 +3,7 @@
 @section('page-title'){{ lang('lang.update') }}@endsection
 
 @section('content')
-    <div class="alert alert-info">قالب های جدید رو میتونید از <a href="https://formpardakht.com/themes" target="_blank">اینجا</a> دانلود کنید</div>
+    <div class="alert alert-info">قالب های جدید رو میتونید از <a href="https://formpardakht.com/blog/category/themes" target="_blank">اینجا</a> دانلود کنید</div>
     <div class="card">
         <div class="card-header">{{ lang('lang.install_theme') }}</div>
         <div class="card-body">
