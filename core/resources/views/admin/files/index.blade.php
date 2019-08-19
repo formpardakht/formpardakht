@@ -30,7 +30,7 @@
               <span class="badge badge-primary">{{ lang('lang.default') }}</span>
               @endif
             </td>
-            <td>{{ custom_money_fileat($file->amount) }}</td>
+            <td>{{ custom_money_format($file->amount) }}</td>
             <td>{{ $file->pay_count }}</td>
             <td>
               <div class="btn-group">
@@ -38,9 +38,6 @@
                   {{ lang('lang.actions') }}
                 </button>
                 <div class="dropdown-menu">
-                  @if(!$file->default)
-                  <a href="{{ route('admin-files-default', ['id' => $file->id]) }}" class="dropdown-item">{{ lang('lang.make_default') }}</a>
-                  @endif
                   <a href="{{ route('admin-files-edit', ['id' => $file->id]) }}" class="dropdown-item">{{ lang('lang.edit') }}</a>
                   <a href="{{ route('admin-files-delete', ['id' => $file->id]) }}" class="dropdown-item">{{ lang('lang.delete') }}</a>
                 </div>

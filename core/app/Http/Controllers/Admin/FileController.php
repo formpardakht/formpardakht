@@ -69,8 +69,8 @@ class FileController extends Controller
                     $f = $request->file('file');
                     $path = get_date_path();
                     $fileName = $path . '/' . uniqid() . $file->id . '.' . $f->getClientOriginalExtension();
-                    Storage::disk('files-image')->put($fileName, file_get_contents($f));
-                    $file->update(['file' => 'storage/files/' . $fileName]);
+                    Storage::disk('files')->put($fileName, file_get_contents($f));
+                    $file->update(['file' => 'app/files/' . $fileName]);
                 }
 
                 return redirect()->back()
@@ -137,16 +137,16 @@ class FileController extends Controller
                     $image = $request->file('image');
                     $path = get_date_path();
                     $imageName = $path . '/' . uniqid() . $file->id . '.' . $image->getClientOriginalExtension();
-                    Storage::disk('files')->put($imageName, file_get_contents($image));
-                    $file->update(['image' => 'storage/files/' . $imageName]);
+                    Storage::disk('files-image')->put($imageName, file_get_contents($image));
+                    $file->update(['image' => 'storage/files-image/' . $imageName]);
                 }
 
                 if ($request->hasFile('file')) {
                     $f = $request->file('file');
                     $path = get_date_path();
                     $fileName = $path . '/' . uniqid() . $file->id . '.' . $f->getClientOriginalExtension();
-                    Storage::disk('files-image')->put($fileName, file_get_contents($f));
-                    $file->update(['file' => 'storage/files/' . $fileName]);
+                    Storage::disk('files')->put($fileName, file_get_contents($f));
+                    $file->update(['file' => 'app/files/' . $fileName]);
                 }
 
                 return redirect()->route('admin-files')

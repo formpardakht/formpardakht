@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\File;
 use App\Transaction;
@@ -95,8 +96,11 @@ class FileController extends Controller
 
         $transaction = Transaction::where('id', '=', Crypt::decrypt($request->token))->where('type', '=', Transaction::$type['file'])->where('status', '=', 1)->first();
         if ($transaction && isset($transaction->details['file_id']) && $transaction->details['file_id'] == $id) {
-            // check link expiration
-            return response()->download(storage_path('app/files/' . $file->file));
+            $dateDiff = date_diff_in_days(new Carbon($transaction->paid_at), Carbon::now());
+            dd($dateDiff);
+            if ($file->expire_day < $dateDiff) {
+                return response()->download(storage_path($file->file));
+            }
         }
 
         abort(404);

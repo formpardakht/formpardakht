@@ -21,17 +21,25 @@
               <textarea name="description" id="txt-description" class="form-control" rows="3">{{ old('description') }}</textarea>
             </div>
             <div class="form-group">
-              <label for="txt-amount" class="label">{{ lang('lang.amount') }} ({{ lang('lang.optional') }})</label>
-              <input type="text" class="form-control" id="txt-amount" name="amount" value="{{ old('amount') }}" placeholder="{{ lang('lang.to_optional_amount_leave_empty') }}">
+              <label for="txt-amount" class="label">{{ lang('lang.amount') }}</label>
+              <input type="text" class="form-control" id="txt-amount" name="amount" value="{{ old('amount') }}">
+            </div>
+            <div class="form-group">
+              <label for="txt-expire-day" class="label">{{ lang('lang.expire_day_title') }}</label>
+              <input type="text" class="form-control" id="txt-expire-day" name="expire_day" value="{{ old('expire_day') ? old('expire_day') : '1'}}">
+            </div>
+            <div class="form-group">
+              <label for="file-file" class="label">{{ lang('lang.file') }}</label>
+              <input type="file" class="form-control" id="file-file" name="file">
             </div>
             <div id="advanced" style="display: none">
               <div class="form-group">
-                <label for="txt-pay-limit" class="label">{{ lang('lang.pay_limit') }} ({{ lang('lang.optional') }})</label>
-                <input type="text" class="form-control" id="txt-pay-limit" name="pay_limit" value="{{ old('pay_limit') }}" placeholder="{{ lang('lang.to_unlimited_payment_leave_empty') }}">
-              </div>
-              <div class="form-group">
                 <label for="file-image" class="label">{{ lang('lang.image') }} ({{ lang('lang.optional') }})</label>
                 <input type="file" class="form-control" id="file-image" name="image" accept="image/*">
+              </div>
+              <div class="form-group">
+                <label for="txt-pay-limit" class="label">{{ lang('lang.pay_limit') }} ({{ lang('lang.optional') }})</label>
+                <input type="text" class="form-control" id="txt-pay-limit" name="pay_limit" value="{{ old('pay_limit') }}" placeholder="{{ lang('lang.to_unlimited_payment_leave_empty') }}">
               </div>
               <div class="form-group">
                 <label class="label">{{ lang('lang.fields') }} ({{ lang('lang.optional') }})</label>
