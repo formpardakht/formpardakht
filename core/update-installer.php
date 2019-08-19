@@ -1,5 +1,7 @@
 <?php
 
+ini_set('max_execution_time', '3000');
+
 $dirs = scandir(__DIR__ . '/tmp');
 if (count($dirs) > 2) {
     $src = __DIR__ . '/tmp/' . $dirs[2];
@@ -12,14 +14,13 @@ function delete_dir($dirPath)
         if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
             $dirPath .= '/';
         }
-        $files = glob($dirPath . '*', GLOB_MARK);
+        $files = glob($dirPath . '{,.}[!.,!..]*', GLOB_MARK | GLOB_BRACE);
+
         foreach ($files as $file) {
             if (is_dir($file)) {
                 delete_dir($file);
             } else {
-                if (basename($file) != 'config.php') {
-                    unlink($file);
-                }
+                unlink($file);
             }
         }
         rmdir($dirPath);
@@ -42,13 +43,10 @@ function recurse_copy($src, $dst)
     closedir($dir);
 }
 
-function clean_up()
-{
-    delete_dir(__DIR__ . '/core');
-}
-
-clean_up();
+copy(__DIR__ . '/core/config.php', __DIR__ . '/config.php');
+delete_dir(__DIR__ . '/core');
 recurse_copy($src, $dst);
+copy(__DIR__ . '/config.php', __DIR__ . '/core/config.php');
 
 if ($_GET['finishUrl']) {
     header('location: ' . $_GET['finishUrl']);
