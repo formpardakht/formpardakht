@@ -1,6 +1,6 @@
 {
     "name": "laravel/laravel",
-    "description": "Formpardakht.com",
+    "description": "The Laravel Framework.",
     "keywords": [
         "framework",
         "laravel"
@@ -12,7 +12,8 @@
         "laravel/framework": "5.1.*",
         "morilog/jalali": "^2.3",
         "ext-curl": "*",
-        "ext-json": "*"
+        "ext-json": "*",
+        "doctrine/inflector": "1.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac
+class ComposerStaticInitcc9210e519f1afec598572c2b8194f9d
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -69,10 +69,6 @@ class ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac
         'I' => 
         array (
             'Illuminate\\' => 11,
-        ),
-        'D' => 
-        array (
-            'Doctrine\\Common\\Inflector\\' => 26,
         ),
         'C' => 
         array (
@@ -194,10 +190,6 @@ class ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate',
         ),
-        'Doctrine\\Common\\Inflector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
-        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
@@ -237,6 +229,10 @@ class ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac
             array (
                 0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
             ),
+            'Doctrine\\Common\\Inflector\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
+            ),
         ),
     );
 
@@ -244,7 +240,6 @@ class ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac
         'ConfigsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ConfigsTableSeeder.php',
         'CreateConfigsTable' => __DIR__ . '/../..' . '/database/migrations/2019_07_08_000856_create_configs_table.php',
         'CreateFactorsTable' => __DIR__ . '/../..' . '/database/migrations/2019_07_24_131447_create_factors_table.php',
-        'CreateFilesTable' => __DIR__ . '/../..' . '/database/migrations/2019_08_19_151712_create_files_table.php',
         'CreateFormsTable' => __DIR__ . '/../..' . '/database/migrations/2019_07_08_143755_create_forms_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateTransactionsTable' => __DIR__ . '/../..' . '/database/migrations/2019_07_08_113413_create_transactions_table.php',
@@ -259,11 +254,11 @@ class ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcc9210e519f1afec598572c2b8194f9d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcc9210e519f1afec598572c2b8194f9d::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitcc9210e519f1afec598572c2b8194f9d::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitcc9210e519f1afec598572c2b8194f9d::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitcc9210e519f1afec598572c2b8194f9d::$classMap;
 
         }, null, ClassLoader::class);
     }
