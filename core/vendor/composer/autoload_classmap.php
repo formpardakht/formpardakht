@@ -9,6 +9,7 @@ return array(
     'ConfigsTableSeeder' => $baseDir . '/database/seeds/ConfigsTableSeeder.php',
     'CreateConfigsTable' => $baseDir . '/database/migrations/2019_07_08_000856_create_configs_table.php',
     'CreateFactorsTable' => $baseDir . '/database/migrations/2019_07_24_131447_create_factors_table.php',
+    'CreateFilesTable' => $baseDir . '/database/migrations/2019_08_19_151712_create_files_table.php',
     'CreateFormsTable' => $baseDir . '/database/migrations/2019_07_08_143755_create_forms_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateTransactionsTable' => $baseDir . '/database/migrations/2019_07_08_113413_create_transactions_table.php',
