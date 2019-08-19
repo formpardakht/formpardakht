@@ -60,7 +60,9 @@ class UpdateController extends Controller
 
     public function finish()
     {
-        Artisan::call('migrate');
+        Artisan::call('migrate', [
+            '--force' => true,
+        ]);
 
         Config::where('key', '=', 'update_new_release')->update([
             'value' => '',
