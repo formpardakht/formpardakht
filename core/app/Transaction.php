@@ -55,6 +55,18 @@ class Transaction extends BaseModel
     public static $type = [
         'form' => 1,
         'factor' => 2,
+        'file' => 3,
+    ];
+
+    /**
+     * Status enums
+     *
+     * @var array
+     */
+    public static $typeLabels = [
+        1 => 'فرم پرداخت',
+        2 => 'فاکتور پرداخت',
+        3 => 'فروش فایل',
     ];
 
     public function form()
@@ -70,6 +82,15 @@ class Transaction extends BaseModel
     {
         if ($this->type == self::$type['factor']) {
             return Factor::find($this->details['factor_id']);
+        }
+
+        return null;
+    }
+
+    public function file()
+    {
+        if ($this->type == self::$type['file']) {
+            return File::find($this->details['file_id']);
         }
 
         return null;

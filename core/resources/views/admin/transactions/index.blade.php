@@ -16,6 +16,23 @@
                     <input type="text" name="card_number" class="form-control" id="txt-card-number" placeholder="{{ lang('lang.card_number') }}" value="@if(isset($inputs['card_number'])){{ $inputs['card_number'] }}@endif" title="0000-0000-0000-0000">
                 </div>
                 <div class="form-group mx-2 mb-2">
+                    <label for="select-type" class="sr-only">{{ lang('lang.type') }}</label>
+                    <select name="type" id="select-type" class="form-control">
+                        <option value="" selected>{{ lang('lang.type') }}</option>
+                        @foreach(\App\Transaction::$typeLabels as $key => $value)
+                            <option value="{{ $key }}" @if(isset($inputs['type']) && $inputs['type'] == $key) selected @endif>{{ $value }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group mx-2 mb-2">
+                    <label for="select-status" class="sr-only">{{ lang('lang.status') }}</label>
+                    <select name="status" id="select-status" class="form-control">
+                        <option value="" @if(isset($inputs['status']) && $inputs['status'] == '') selected @endif>{{ lang('lang.status') }}</option>
+                        <option value="1" @if(isset($inputs['status']) && $inputs['status'] == '1') selected @endif>{{ lang('lang.success') }}</option>
+                        <option value="0" @if(isset($inputs['status']) && $inputs['status'] == '0') selected @endif>{{ lang('lang.failed') }}</option>
+                    </select>
+                </div>
+                <div class="form-group mx-2 mb-2">
                     <button class="btn btn-primary">{{ lang('lang.filter') }}</button>
                 </div>
             </form>
@@ -29,6 +46,7 @@
                     <thead>
                     <tr>
                         <th>{{ lang('lang.id') }}</th>
+                        <th>{{ lang('lang.type') }}</th>
                         <th>{{ lang('lang.amount') }}</th>
                         <th>{{ lang('lang.date') }}</th>
                         <th>{{ lang('lang.status') }}</th>
@@ -39,6 +57,7 @@
                     @foreach ($transactions as $transaction)
                         <tr>
                             <td>{{ $transaction->id }}</td>
+                            <td>{{ \App\Transaction::$typeLabels[$transaction->type] }}</td>
                             <td>{{ custom_money_format($transaction->amount) }}</td>
                             <td>{{ $transaction->full_jalali_created_at }}</td>
                             <td>

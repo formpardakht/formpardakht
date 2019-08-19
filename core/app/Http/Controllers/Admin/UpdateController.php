@@ -6,6 +6,7 @@ use App\Config;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use ZipArchive;
 
@@ -62,8 +63,10 @@ class UpdateController extends Controller
         Artisan::call('migrate');
 
         Config::where('key', '=', 'update_new_release')->update([
-            'value' => ''
+            'value' => '',
         ]);
+
+        $this->updateDB();
 
         $this->cleanUpRoot();
 
@@ -76,24 +79,28 @@ class UpdateController extends Controller
     {
         $admin = User::find(1);
         $params = [
-            'url' => site_config('site_url'),
+            'url' => url('/'),
             'admin_email' => $admin ? $admin->email : '',
             'version' => config('app.version'),
         ];
-        $latestRelease = curl_get(config('app.update_url') . '?' . http_build_query($params));
+        try {
+            $latestRelease = curl_get(config('app.update_url') . '?' . http_build_query($params), 5);
 
-        if ($latestRelease) {
-            Config::where('key', '=', 'update_last_check')->update([
-                'value' => date('Y-m-d H:i:s'),
-            ]);
-
-            if (isset($latestRelease->version) && version_compare($latestRelease->version, config('app.version')) > 0) {
-                Config::where('key', '=', 'update_new_release')->update([
-                    'value' => $latestRelease->version,
+            if ($latestRelease) {
+                Config::where('key', '=', 'update_last_check')->update([
+                    'value' => date('Y-m-d H:i:s'),
                 ]);
 
-                return $latestRelease;
+                if (isset($latestRelease->version) && version_compare($latestRelease->version, config('app.version')) > 0) {
+                    Config::where('key', '=', 'update_new_release')->update([
+                        'value' => $latestRelease->version,
+                    ]);
+
+                    return $latestRelease;
+                }
             }
+        } catch (\Exception $e) {
+            //
         }
 
         return null;
@@ -128,5 +135,11 @@ class UpdateController extends Controller
         if (file_exists(base_path('.env.example'))) {
             unlink(base_path('.env.example'));
         }
+    }
+
+    private function updateDB()
+    {
+        // version 2.1.3
+        DB::statement('ALTER TABLE configs MODIFY COLUMN value longtext');
     }
 }

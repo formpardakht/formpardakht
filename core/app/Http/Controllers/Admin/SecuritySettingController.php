@@ -17,7 +17,7 @@ class SecuritySettingController extends Controller
 
     public function changePassword(Request $request)
     {
-        if (app()->environment() === 'demo') {
+        if (app('site_configs')['APP_ENV'] === 'demo') {
             return redirect()->route('admin-dashboard')
                 ->with('alert', 'warning')
                 ->with('message', lang('lang.demo_mode'));

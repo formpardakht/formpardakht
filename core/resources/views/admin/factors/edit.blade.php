@@ -20,7 +20,7 @@
               <label for="txt-title" class="label">{{ lang('lang.tax') }} ({{ lang('lang.required') }})</label>
               <input type="number" class="form-control col-md-6" id="txt-tax" name="tax" value="{{ $factor->tax }}">
             </div>
-            <div class="form-group py-3 px-3" style="background: oldlace">
+            <div class="form-group">
               <label class="label">{{ lang('lang.items') }} ({{ lang('lang.required') }})</label>
               <a href="javascript:" class="float-left" onclick="addNewField()">{{ lang('lang.add_new_item') }}</a>
               <div id="items">

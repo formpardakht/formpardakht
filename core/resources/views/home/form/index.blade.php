@@ -17,9 +17,11 @@
                 <p>{!! nl2br2($form->description) !!}</p>
               @endif
               @if($form->image)
-                <a href="{{ asset($form->image) }}" target="_blank">
-                  <img src="{{ asset($form->image) }}" class="img-thumbnail mb-3" alt="{{ $form->title }}">
-                </a>
+                <div class="text-center">
+                  <a href="{{ asset($form->image) }}" target="_blank">
+                    <img src="{{ asset($form->image) }}" class="img-thumbnail mb-3" alt="{{ $form->title }}">
+                  </a>
+                </div>
               @endif
               @if($form->fields)
                 @foreach($form->fields as $key => $f)

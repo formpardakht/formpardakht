@@ -100,12 +100,14 @@ class FormController extends Controller
             return DB::transaction(function () use ($request, $id) {
                 $form = Form::find($id);
                 $fields = [];
-                foreach ($request->fields as $key => $field) {
-                    array_push($fields, [
-                        'name' => 'field_' . $key,
-                        'label' => $field,
-                        'required' => array_search('required_' . $key, $request->required_fields) !== false ? true : false,
-                    ]);
+                if ($request->fields) {
+                    foreach ($request->fields as $key => $field) {
+                        array_push($fields, [
+                            'name' => 'field_' . $key,
+                            'label' => $field,
+                            'required' => array_search('required_' . $key, $request->required_fields) !== false ? true : false,
+                        ]);
+                    }
                 }
 
                 $form->update([
@@ -143,7 +145,7 @@ class FormController extends Controller
      */
     public function makeDefault(Request $request, $id)
     {
-        if (app()->environment() === 'demo') {
+        if (app('site_configs')['APP_ENV'] === 'demo') {
             return redirect()->back()
                 ->with('alert', 'warning')
                 ->with('message', lang('lang.demo_mode'));
@@ -175,7 +177,7 @@ class FormController extends Controller
 
     public function delete(Request $request, $id)
     {
-        if (app()->environment() === 'demo') {
+        if (app('site_configs')['APP_ENV'] === 'demo') {
             return redirect()->back()
                 ->with('alert', 'warning')
                 ->with('message', lang('lang.demo_mode'));

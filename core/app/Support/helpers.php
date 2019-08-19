@@ -17,14 +17,14 @@ function curl_post($url, $params)
     return $res;
 }
 
-function curl_get($url)
+function curl_get($url, $timeout = 30)
 {
     $ch = curl_init();
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_URL => $url,
         CURLOPT_SSL_VERIFYPEER => false,
-        CURLOPT_TIMEOUT => 30,
+        CURLOPT_TIMEOUT => $timeout,
     ]);
     $res = curl_exec($ch);
     curl_close($ch);
@@ -89,7 +89,7 @@ function site_config($key)
 
 function handle_exception(\Exception $e)
 {
-    if (app()->environment() == 'local') {
+    if (app('site_configs')['APP_ENV'] == 'local') {
         return redirect()->back()
             ->with('alert', 'danger')
             ->with('message', $e->getMessage());

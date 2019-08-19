@@ -19,3 +19,7 @@ body {
 .card-header .btn {
     padding: .05rem .5rem;
 }
+
+.list-group-item:active, .list-group-item:focus{
+    background-color: #2e283e;
+}

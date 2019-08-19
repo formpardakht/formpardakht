@@ -65,16 +65,20 @@ class UpdateServiceProvider extends ServiceProvider
     {
         $admin = User::find(1);
         $params = [
-            'url' => site_config('site_url'),
+            'url' => url('/'),
             'admin_email' => $admin ? $admin->email : '',
             'version' => config('app.version'),
         ];
-        $latestRelease = curl_get(config('app.update_url') . '?' . http_build_query($params));
+        try {
+            $latestRelease = curl_get(config('app.update_url') . '?' . http_build_query($params), 5);
 
-        if ($latestRelease) {
-            if (isset($latestRelease->version) && version_compare($latestRelease->version, config('app.version')) > 0) {
-                return $latestRelease;
+            if ($latestRelease) {
+                if (isset($latestRelease->version) && version_compare($latestRelease->version, config('app.version')) > 0) {
+                    return $latestRelease;
+                }
             }
+        } catch (\Exception $e) {
+            //
         }
 
         return null;

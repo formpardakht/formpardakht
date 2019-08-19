@@ -50,6 +50,9 @@ class PaymentController extends Controller
                                 case Transaction::$type['form']:
                                     $transaction->form()->update(['pay_count' => $transaction->form()->pay_count + 1]);
                                     break;
+                                case Transaction::$type['file']:
+                                    $transaction->file()->update(['pay_count' => $transaction->file()->pay_count + 1]);
+                                    break;
                                 case Transaction::$type['factor']:
                                     $transaction->factor()->update([
                                         'paid' => 1,
