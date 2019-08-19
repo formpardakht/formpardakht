@@ -44,7 +44,13 @@ function recurse_copy($src, $dst)
 }
 
 copy(__DIR__ . '/core/config.php', __DIR__ . '/config.php');
-delete_dir(__DIR__ . '/core');
+delete_dir(__DIR__ . '/core/app');
+delete_dir(__DIR__ . '/core/bootstrap');
+delete_dir(__DIR__ . '/core/config');
+delete_dir(__DIR__ . '/core/database');
+delete_dir(__DIR__ . '/core/resources');
+delete_dir(__DIR__ . '/core/tests');
+delete_dir(__DIR__ . '/core/vendor');
 recurse_copy($src, $dst);
 copy(__DIR__ . '/config.php', __DIR__ . '/core/config.php');
 
