@@ -19,7 +19,7 @@ class TransactionController extends Controller
 
     public function filter(Request $request)
     {
-        if ($request->id || $request->type || $request->transaction_id || $request->card_number || $request->status) {
+        if ($request->id || $request->type || $request->transaction_id || $request->card_number || $request->status || $request->status == '0') {
             $transactions = Transaction::where(function ($query) use ($request) {
                 if ($request->id) {
                     $query->where('id', '=', $request->id);
@@ -33,7 +33,7 @@ class TransactionController extends Controller
                 if ($request->card_number) {
                     $query->where('payment_info->card_number', '=', mask_card_number($request->card_number));
                 }
-                if ($request->status) {
+                if ($request->status || $request->status == '0') {
                     $query->where('status', '=', $request->status)->where('verified', '=', $request->status);
                 }
             })->orderBy('id', 'desc')->paginate(15);

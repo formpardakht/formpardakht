@@ -1,11 +1,11 @@
 @extends('fp::layouts.admin')
 
-@section('page-title'){{ lang('lang.edit_form') }}@endsection
+@section('page-title'){{ lang('lang.edit_file') }}@endsection
 
 @section('content')
   <div class="card">
     <div class="card-header">
-      {{ lang('lang.edit_form') }}
+      {{ lang('lang.edit_file') }}
     </div>
     <div class="card-body">
       <div class="row">
@@ -14,30 +14,38 @@
             {{ csrf_field() }}
             <div class="form-group">
               <label for="txt-title" class="label">{{ lang('lang.title') }} ({{ lang('lang.required') }})</label>
-              <input type="text" class="form-control" id="txt-title" name="title" value="{{ $form->title }}">
+              <input type="text" class="form-control" id="txt-title" name="title" value="{{ $file->title }}">
             </div>
             <div class="form-group">
               <label for="txt-description" class="label">{{ lang('lang.description') }} ({{ lang('lang.optional') }})</label>
-              <textarea name="description" id="txt-description" class="form-control" rows="3">{{ $form->description }}</textarea>
+              <textarea name="description" id="txt-description" class="form-control" rows="3">{{ $file->description }}</textarea>
             </div>
             <div class="form-group">
               <label for="txt-amount" class="label">{{ lang('lang.amount') }} ({{ lang('lang.optional') }})</label>
-              <input type="text" class="form-control" id="txt-amount" name="amount" value="{{ $form->amount }}" placeholder="{{ lang('lang.to_optional_amount_leave_empty') }}">
+              <input type="text" class="form-control" id="txt-amount" name="amount" value="{{ $file->amount }}">
+            </div>
+            <div class="form-group">
+              <label for="txt-expire-day" class="label">{{ lang('lang.expire_day_title') }}</label>
+              <input type="text" class="form-control" id="txt-expire-day" name="expire_day" value="{{ $file->expire_day }}">
+            </div>
+            <div class="form-group">
+              <label for="file-file" class="label">{{ lang('lang.file') }}</label>
+              <input type="file" class="form-control" id="file-file" name="file">
             </div>
             <div id="advanced">
-              <div class="form-group">
-                <label for="txt-pay-limit" class="label">{{ lang('lang.pay_limit') }} ({{ lang('lang.optional') }})</label>
-                <input type="text" class="form-control" id="txt-pay-limit" name="pay_limit" value="{{ $form->pay_limit }}" placeholder="{{ lang('lang.to_unlimited_payment_leave_empty') }}">
-              </div>
               <div class="form-group">
                 <label for="file-image" class="label">{{ lang('lang.image') }} ({{ lang('lang.optional') }})</label>
                 <input type="file" class="form-control" id="file-image" name="image" accept="image/*">
               </div>
               <div class="form-group">
+                <label for="txt-pay-limit" class="label">{{ lang('lang.pay_limit') }} ({{ lang('lang.optional') }})</label>
+                <input type="text" class="form-control" id="txt-pay-limit" name="pay_limit" value="{{ $file->pay_limit }}" placeholder="{{ lang('lang.to_unlimited_payment_leave_empty') }}">
+              </div>
+              <div class="form-group">
                 <label class="label">{{ lang('lang.fields') }} ({{ lang('lang.optional') }})</label>
                 <a href="javascript:" class="float-left" onclick="addNewField()">{{ lang('lang.add_new_field') }}</a>
                 <div id="fields">
-                  @foreach($form->fields as $key => $field)
+                  @foreach($file->fields as $key => $field)
                     <div class="form-group field" id="field{{ $key }}">
                       <div class="input-group">
                         <div class="input-group-prepend">

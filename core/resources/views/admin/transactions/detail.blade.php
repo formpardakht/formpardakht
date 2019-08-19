@@ -71,6 +71,26 @@
           </tr>
         @endif
       @endif
+      @if($transaction->type == \App\Transaction::$type['file'] && $transaction->file())
+        <tr>
+          <td>{{ lang('lang.form_details') }}</td>
+          <td>
+            <a href="{{ route('file', ['id' => $transaction->file()->id]) }}" target="_blank">{{ $transaction->file()->title }}</a>
+          </td>
+        </tr>
+        @if($transaction->details && isset($transaction->details['form_fields']))
+          <tr>
+            <td>
+              {{ lang('lang.inputs') }}
+            </td>
+            <td>
+              @foreach ($transaction->details['form_fields'] as $input)
+                <b>{{ $input['label'] }} : </b> {{ $input['value'] }} <br>
+              @endforeach
+            </td>
+          </tr>
+        @endif
+      @endif
       @if($transaction->type == \App\Transaction::$type['factor'] && $transaction->factor())
         <tr>
           <td>{{ lang('lang.title') }}</td>

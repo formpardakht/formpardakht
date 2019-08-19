@@ -1,11 +1,11 @@
 @extends('fp::layouts.admin')
 
-@section('page-title'){{ lang('lang.add_new_form') }}@endsection
+@section('page-title'){{ lang('lang.add_new_file') }}@endsection
 
 @section('content')
   <div class="card">
     <div class="card-header">
-      {{ lang('lang.add_new_form') }}
+      {{ lang('lang.add_new_file') }}
     </div>
     <div class="card-body">
       <div class="row">

@@ -58,6 +58,17 @@ class Transaction extends BaseModel
         'file' => 3,
     ];
 
+    /**
+     * Status enums
+     *
+     * @var array
+     */
+    public static $typeLabels = [
+        1 => 'فرم پرداخت',
+        2 => 'فاکتور پرداخت',
+        3 => 'فروش فایل',
+    ];
+
     public function form()
     {
         if ($this->type == self::$type['form']) {

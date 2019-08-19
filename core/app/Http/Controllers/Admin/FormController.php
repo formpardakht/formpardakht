@@ -100,12 +100,14 @@ class FormController extends Controller
             return DB::transaction(function () use ($request, $id) {
                 $form = Form::find($id);
                 $fields = [];
-                foreach ($request->fields as $key => $field) {
-                    array_push($fields, [
-                        'name' => 'field_' . $key,
-                        'label' => $field,
-                        'required' => array_search('required_' . $key, $request->required_fields) !== false ? true : false,
-                    ]);
+                if ($request->fields) {
+                    foreach ($request->fields as $key => $field) {
+                        array_push($fields, [
+                            'name' => 'field_' . $key,
+                            'label' => $field,
+                            'required' => array_search('required_' . $key, $request->required_fields) !== false ? true : false,
+                        ]);
+                    }
                 }
 
                 $form->update([
