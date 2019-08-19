@@ -65,7 +65,7 @@ class UpdateServiceProvider extends ServiceProvider
     {
         $admin = User::find(1);
         $params = [
-            'url' => site_config('site_url'),
+            'url' => url('/'),
             'admin_email' => $admin ? $admin->email : '',
             'version' => config('app.version'),
         ];

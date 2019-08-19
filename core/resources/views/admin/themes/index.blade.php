@@ -1,6 +1,6 @@
 @extends('fp::layouts.admin')
 
-@section('page-title'){{ lang('lang.update') }}@endsection
+@section('page-title'){{ lang('lang.themes') }}@endsection
 
 @section('content')
     <div class="alert alert-info">قالب های جدید رو میتونید از <a href="https://formpardakht.com/themes" target="_blank">اینجا</a> دانلود کنید</div>

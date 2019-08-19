@@ -18,6 +18,10 @@ Route::group(['middleware' => 'check-installation'], function () {
     Route::get('factor/{id}', 'FactorController@index')->name('factor');
     Route::post('factor/{id}', 'FactorController@pay');
 
+    Route::get('file/{id}', 'FileController@index')->name('file');
+    Route::post('file/{id}', 'FileController@pay');
+    Route::get('file/{id}/download', 'FileController@download')->name('file-download');
+
     Route::any('pg/callback/payir', 'PaymentController@callbackPayir')->name('pg-callback-payir');
     Route::get('pg/pay/{id}', 'PaymentController@pay')->name('pg-pay');
 
@@ -45,6 +49,13 @@ Route::group(['middleware' => 'check-installation'], function () {
         Route::get('factors/edit/{id}', 'Admin\FactorController@showEdit')->name('admin-factors-edit');
         Route::post('factors/edit/{id}', 'Admin\FactorController@edit');
         Route::get('factors/delete/{id}', 'Admin\FactorController@delete')->name('admin-factors-delete');
+
+        Route::get('files', 'Admin\FileController@index')->name('admin-files');
+        Route::get('files/add', 'Admin\FileController@showAdd')->name('admin-files-add');
+        Route::post('files/add', 'Admin\FileController@add');
+        Route::get('files/edit/{id}', 'Admin\FileController@showEdit')->name('admin-files-edit');
+        Route::post('files/edit/{id}', 'Admin\FileController@edit');
+        Route::get('files/delete/{id}', 'Admin\FileController@delete')->name('admin-files-delete');
 
         Route::get('configs', 'Admin\ConfigController@index')->name('admin-configs');
         Route::post('configs', 'Admin\ConfigController@edit');

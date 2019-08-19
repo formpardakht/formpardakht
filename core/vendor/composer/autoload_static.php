@@ -244,6 +244,7 @@ class ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac
         'ConfigsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ConfigsTableSeeder.php',
         'CreateConfigsTable' => __DIR__ . '/../..' . '/database/migrations/2019_07_08_000856_create_configs_table.php',
         'CreateFactorsTable' => __DIR__ . '/../..' . '/database/migrations/2019_07_24_131447_create_factors_table.php',
+        'CreateFilesTable' => __DIR__ . '/../..' . '/database/migrations/2019_08_19_151712_create_files_table.php',
         'CreateFormsTable' => __DIR__ . '/../..' . '/database/migrations/2019_07_08_143755_create_forms_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateTransactionsTable' => __DIR__ . '/../..' . '/database/migrations/2019_07_08_113413_create_transactions_table.php',
@@ -252,6 +253,7 @@ class ComposerStaticInit0bd0b32edd73c4d92b63fd65ea082cac
         'FormsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/FormsTableSeeder.php',
         'IlluminateQueueClosure' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
         'SessionHandlerInterface' => __DIR__ . '/..' . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
+        'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

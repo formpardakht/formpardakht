@@ -79,7 +79,7 @@ class UpdateController extends Controller
     {
         $admin = User::find(1);
         $params = [
-            'url' => site_config('site_url'),
+            'url' => url('/'),
             'admin_email' => $admin ? $admin->email : '',
             'version' => config('app.version'),
         ];
@@ -139,6 +139,7 @@ class UpdateController extends Controller
 
     private function updateDB()
     {
+        // version 2.1.3
         DB::statement('ALTER TABLE configs MODIFY COLUMN value longtext');
     }
 }
