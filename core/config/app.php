@@ -2,7 +2,7 @@
 
 return [
 
-    'version' => '2.5.3',
+    'version' => '2.5.4',
     'update_url' => 'https://formpardakht.com/release.json',
 
     /*

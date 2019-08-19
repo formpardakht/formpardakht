@@ -27,7 +27,7 @@ class ThemeController extends Controller
             }
         }
 
-        return view('fp::admin.themes.index')
+        return view('fp::admin.theme.index')
             ->with('activeMenu', 'themes')
             ->with('themes', $themes);
     }
