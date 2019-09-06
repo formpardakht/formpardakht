@@ -68,8 +68,6 @@ class UpdateController extends Controller
             'value' => '',
         ]);
 
-        $this->updateDB();
-
         $this->cleanUpRoot();
 
         return redirect()->route('admin-update')
@@ -137,11 +135,5 @@ class UpdateController extends Controller
         if (file_exists(base_path('.env.example'))) {
             unlink(base_path('.env.example'));
         }
-    }
-
-    private function updateDB()
-    {
-        // version 2.1.3
-        DB::statement('ALTER TABLE configs MODIFY COLUMN value longtext');
     }
 }
