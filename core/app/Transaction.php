@@ -9,7 +9,7 @@ class Transaction extends BaseModel
      *
      * @var string
      */
-    protected $table = 'transactions';
+    protected $table = 'fp_transactions';
 
     /**
      * The attributes that are mass assignable.

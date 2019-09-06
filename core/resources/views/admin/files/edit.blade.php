@@ -34,6 +34,23 @@
             </div>
             <div id="advanced">
               <div class="form-group">
+                <label for="txt-pay-limit" class="label">{{ lang('lang.form_size') }}</label>
+                <div>
+                  <div class="form-check form-check-inline pl-0 ml-0 mr-2">
+                    <input class="form-check-input ml-0 mr-2" type="radio" name="form_size" id="radio-lg" value="12" @if($file->form_size == 12) checked @endif>
+                    <label class="form-check-label" for="radio-lg">{{ lang('lang.form_size_lg') }}</label>
+                  </div>
+                  <div class="form-check form-check-inline pl-0 ml-0 mr-2">
+                    <input class="form-check-input ml-0 mr-2" type="radio" name="form_size" id="radio-md" value="8" @if($file->form_size == 8) checked @endif>
+                    <label class="form-check-label" for="radio-md">{{ lang('lang.form_size_md') }}</label>
+                  </div>
+                  <div class="form-check form-check-inline pl-0 ml-0 mr-2">
+                    <input class="form-check-input ml-0 mr-2" type="radio" name="form_size" id="radio-sm" value="4" @if($file->form_size == 4) checked @endif>
+                    <label class="form-check-label" for="radio-sm">{{ lang('lang.form_size_sm') }}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="file-image" class="label">{{ lang('lang.image') }} ({{ lang('lang.optional') }})</label>
                 <input type="file" class="form-control" id="file-image" name="image" accept="image/*">
               </div>

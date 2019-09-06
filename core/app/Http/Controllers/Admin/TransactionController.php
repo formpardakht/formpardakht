@@ -51,7 +51,7 @@ class TransactionController extends Controller
     {
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:transactions',
+            'id' => 'required|exists:fp_transactions',
         ];
         $this->validate($request, $rules);
 

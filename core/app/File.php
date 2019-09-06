@@ -9,7 +9,7 @@ class File extends BaseModel
      *
      * @var string
      */
-    protected $table = 'files';
+    protected $table = 'fp_files';
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +27,7 @@ class File extends BaseModel
         'fields',
         'file',
         'status',
+        'form_size'
     ];
 
     /**

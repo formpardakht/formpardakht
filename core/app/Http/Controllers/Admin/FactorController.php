@@ -96,7 +96,7 @@ class FactorController extends Controller
     {
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:factors,id',
+            'id' => 'required|exists:fp_factors,id',
         ];
         $this->validate($request, $rules);
 
@@ -111,7 +111,7 @@ class FactorController extends Controller
     {
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:factors,id',
+            'id' => 'required|exists:fp_factors,id',
             'title' => 'required|max:255',
             'tax' => 'required|numeric|min:0|max:100',
         ];
@@ -165,7 +165,7 @@ class FactorController extends Controller
 
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:factors,id',
+            'id' => 'required|exists:fp_factors,id',
         ];
         $this->validate($request, $rules);
 

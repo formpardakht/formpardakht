@@ -55,6 +55,7 @@ class FileController extends Controller
                     'pay_limit' => $request->pay_limit,
                     'expire_day' => $request->expire_day,
                     'fields' => $fields,
+                    'form_size' => $request->form_size ? $request->form_size : 4
                 ]);
 
                 if ($request->hasFile('image')) {
@@ -86,7 +87,7 @@ class FileController extends Controller
     {
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:files,id',
+            'id' => 'required|exists:fp_files,id',
         ];
         $this->validate($request, $rules);
 
@@ -101,7 +102,7 @@ class FileController extends Controller
     {
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:files,id',
+            'id' => 'required|exists:fp_files,id',
             'amount' => 'required|numeric|greater_than_rial:1000',
             'title' => 'required',
             'expire_day' => 'required|numeric',
@@ -130,6 +131,7 @@ class FileController extends Controller
                     'pay_limit' => $request->pay_limit,
                     'expire_day' => $request->expire_day,
                     'fields' => $fields,
+                    'form_size' => $request->form_size ? $request->form_size : 4
                 ]);
 
                 if ($request->hasFile('image')) {
@@ -173,7 +175,7 @@ class FileController extends Controller
 
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:files,id',
+            'id' => 'required|exists:fp_files,id',
         ];
         $this->validate($request, $rules);
 

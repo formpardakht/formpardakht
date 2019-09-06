@@ -9,7 +9,7 @@ class Form extends BaseModel
      *
      * @var string
      */
-    protected $table = 'forms';
+    protected $table = 'fp_forms';
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +25,8 @@ class Form extends BaseModel
         'fields',
         'image',
         'default',
-        'status'
+        'status',
+        'form_size'
     ];
 
     /**

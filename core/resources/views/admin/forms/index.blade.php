@@ -32,6 +32,15 @@
             <td>{{ $form->amount ? custom_money_format($form->amount) : 'دلخواه' }}</td>
             <td>
               <div class="btn-group">
+                <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{ lang('lang.share') }}
+                </button>
+                <div class="dropdown-menu">
+                  <a href="https://t.me/share/url?url={{ site_config('site_url') . '/form/' . $form->id }}" class="dropdown-item" target="_blank">{{ lang('lang.telegram') }}</a>
+                  <a href="https://api.whatsapp.com/send?text={{ site_config('site_url') . '/form/' . $form->id }}" class="dropdown-item" target="_blank">{{ lang('lang.whatsapp') }}</a>
+                </div>
+              </div>
+              <div class="btn-group">
                 <button type="button" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{ lang('lang.actions') }}
                 </button>
