@@ -10,7 +10,7 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::orderBy('id', 'desc')->paginate(15);
+        $transactions = Transaction::orderBy('id', 'desc')->paginate(20);
 
         return view('fp::admin.transactions.index')
             ->with('activeMenu', 'transactions')
