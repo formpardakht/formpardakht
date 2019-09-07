@@ -26,6 +26,23 @@
             </div>
             <div id="advanced" style="display: none">
               <div class="form-group">
+                <label for="txt-pay-limit" class="label">{{ lang('lang.form_size') }}</label>
+                <div>
+                  <div class="form-check form-check-inline pl-0 ml-0 mr-2">
+                    <input class="form-check-input ml-0 mr-2" type="radio" name="form_size" id="radio-lg" value="12">
+                    <label class="form-check-label" for="radio-lg">{{ lang('lang.form_size_lg') }}</label>
+                  </div>
+                  <div class="form-check form-check-inline pl-0 ml-0 mr-2">
+                    <input class="form-check-input ml-0 mr-2" type="radio" name="form_size" id="radio-md" value="8">
+                    <label class="form-check-label" for="radio-md">{{ lang('lang.form_size_md') }}</label>
+                  </div>
+                  <div class="form-check form-check-inline pl-0 ml-0 mr-2">
+                    <input class="form-check-input ml-0 mr-2" type="radio" name="form_size" id="radio-sm" value="4" checked>
+                    <label class="form-check-label" for="radio-sm">{{ lang('lang.form_size_sm') }}</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="txt-pay-limit" class="label">{{ lang('lang.pay_limit') }} ({{ lang('lang.optional') }})</label>
                 <input type="text" class="form-control" id="txt-pay-limit" name="pay_limit" value="{{ old('pay_limit') }}" placeholder="{{ lang('lang.to_unlimited_payment_leave_empty') }}">
               </div>

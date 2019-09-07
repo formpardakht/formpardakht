@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Config extends Model
 {
+    protected $table = 'fp_configs';
+
     /**
      * The attributes that are mass assignable.
      *

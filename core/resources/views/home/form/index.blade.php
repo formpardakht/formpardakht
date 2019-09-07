@@ -6,8 +6,8 @@
 
 @section('content')
   <div class="container">
-    <div class="row">
-      <div class="col col-md-4 offset-md-4">
+    <div class="row justify-content-center">
+      <div class="col col-md-{{ $form->form_size ? $form->form_size : '4' }}">
         <div class="card mt-5">
           <form action="{{ route('form', ['id' => $form->id]) }}" method="post">
             {!! csrf_field() !!}

@@ -10,7 +10,7 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::orderBy('id', 'desc')->paginate(15);
+        $transactions = Transaction::orderBy('id', 'desc')->paginate(20);
 
         return view('fp::admin.transactions.index')
             ->with('activeMenu', 'transactions')
@@ -51,7 +51,7 @@ class TransactionController extends Controller
     {
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:transactions',
+            'id' => 'required|exists:fp_transactions',
         ];
         $this->validate($request, $rules);
 

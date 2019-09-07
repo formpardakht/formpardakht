@@ -6,6 +6,8 @@ Route::get('install/complete', 'InstallController@showComplete')->name('install-
 Route::post('install/complete', 'InstallController@complete');
 Route::get('install/complete-ez', 'InstallController@completeEZInstallation')->name('install-complete-ez');
 
+Route::get('admin/update/finish', 'Admin\UpdateController@finish');
+
 Route::group(['middleware' => 'check-installation'], function () {
     Route::get('login', 'Auth\AuthController@getLogin')->name('login');
     Route::post('login', 'Auth\AuthController@postLogin');
@@ -67,7 +69,6 @@ Route::group(['middleware' => 'check-installation'], function () {
 
         Route::get('update', 'Admin\UpdateController@index')->name('admin-update');
         Route::get('update/install', 'Admin\UpdateController@install')->name('admin-update-install');
-        Route::get('update/finish', 'Admin\UpdateController@finish')->name('admin-update-finish');
 
         Route::get('themes', 'Admin\ThemeController@index')->name('admin-themes');
         Route::get('themes/update/{slug}', 'Admin\ThemeController@update')->name('admin-themes-update');

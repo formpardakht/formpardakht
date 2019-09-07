@@ -52,6 +52,7 @@ class FormController extends Controller
                     'amount' => $request->amount,
                     'pay_limit' => $request->pay_limit,
                     'fields' => $fields,
+                    'form_size' => $request->form_size ? $request->form_size : 4
                 ]);
 
                 if ($request->hasFile('image')) {
@@ -75,7 +76,7 @@ class FormController extends Controller
     {
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:forms,id',
+            'id' => 'required|exists:fp_forms,id',
         ];
         $this->validate($request, $rules);
 
@@ -90,7 +91,7 @@ class FormController extends Controller
     {
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:forms,id',
+            'id' => 'required|exists:fp_forms,id',
             'title' => 'required',
             'image' => 'image',
         ];
@@ -116,6 +117,7 @@ class FormController extends Controller
                     'amount' => $request->amount,
                     'pay_limit' => $request->pay_limit,
                     'fields' => $fields,
+                    'form_size' => $request->form_size ? $request->form_size : 4
                 ]);
 
                 if ($request->hasFile('image')) {
@@ -153,7 +155,7 @@ class FormController extends Controller
 
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:forms,id',
+            'id' => 'required|exists:fp_forms,id',
         ];
         $this->validate($request, $rules);
 
@@ -185,7 +187,7 @@ class FormController extends Controller
 
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:forms,id',
+            'id' => 'required|exists:fp_forms,id',
         ];
         $this->validate($request, $rules);
 

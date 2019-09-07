@@ -237,6 +237,9 @@ class ComposerStaticInitcc9210e519f1afec598572c2b8194f9d
     );
 
     public static $classMap = array (
+        'AddFormSizeFieldToFpFilesTable' => __DIR__ . '/../..' . '/database/migrations/2019_09_06_235958_add_form_size_field_to_fp_files_table.php',
+        'AddFormSizeFieldToFpFormsTable' => __DIR__ . '/../..' . '/database/migrations/2019_09_06_235603_add_form_size_field_to_fp_forms_table.php',
+        'AddPrefixFpToTables' => __DIR__ . '/../..' . '/database/migrations/2019_09_06_225148_add_prefix_fp_to_tables.php',
         'ConfigsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ConfigsTableSeeder.php',
         'CreateConfigsTable' => __DIR__ . '/../..' . '/database/migrations/2019_07_08_000856_create_configs_table.php',
         'CreateFactorsTable' => __DIR__ . '/../..' . '/database/migrations/2019_07_24_131447_create_factors_table.php',

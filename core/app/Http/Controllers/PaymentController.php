@@ -14,7 +14,7 @@ class PaymentController extends Controller
     public function callbackPayir(Request $request)
     {
         $rules = [
-            'id' => 'required|exists:transactions,id',
+            'id' => 'required|exists:fp_transactions,id',
             'token' => 'required',
             'status' => 'required|numeric|in:0,1',
         ];
@@ -79,7 +79,7 @@ class PaymentController extends Controller
     {
         $request->request->add(['id' => $id]);
         $rules = [
-            'id' => 'required|exists:transactions,id,status,0,verified,0',
+            'id' => 'required|exists:fp_transactions,id,status,0,verified,0',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {

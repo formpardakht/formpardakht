@@ -9,7 +9,7 @@ class Factor extends BaseModel
      *
      * @var string
      */
-    protected $table = 'factors';
+    protected $table = 'fp_factors';
 
     /**
      * The attributes that are mass assignable.
