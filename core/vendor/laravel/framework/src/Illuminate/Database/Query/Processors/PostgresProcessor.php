@@ -12,18 +12,16 @@ class PostgresProcessor extends Processor
      * @param  \Illuminate\Database\Query\Builder  $query
      * @param  string  $sql
      * @param  array   $values
-     * @param  string  $sequence
+     * @param  string|null  $sequence
      * @return int
      */
     public function processInsertGetId(Builder $query, $sql, $values, $sequence = null)
     {
-        $results = $query->getConnection()->selectFromWriteConnection($sql, $values);
+        $result = $query->getConnection()->selectFromWriteConnection($sql, $values)[0];
 
         $sequence = $sequence ?: 'id';
 
-        $result = (array) $results[0];
-
-        $id = $result[$sequence];
+        $id = is_object($result) ? $result->{$sequence} : $result[$sequence];
 
         return is_numeric($id) ? (int) $id : $id;
     }
@@ -36,12 +34,8 @@ class PostgresProcessor extends Processor
      */
     public function processColumnListing($results)
     {
-        $mapping = function ($r) {
-            $r = (object) $r;
-
-            return $r->column_name;
-        };
-
-        return array_map($mapping, $results);
+        return array_map(function ($result) {
+            return ((object) $result)->column_name;
+        }, $results);
     }
 }

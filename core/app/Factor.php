@@ -2,7 +2,9 @@
 
 namespace App;
 
-class Factor extends BaseModel
+use Illuminate\Database\Eloquent\Model;
+
+class Factor extends Model
 {
     /**
      * The table associated with the model.
@@ -35,6 +37,9 @@ class Factor extends BaseModel
         'items' => 'array',
     ];
 
+    /**
+     * @var array
+     */
     public static $status = [
         'active' => 1,
         'deleted' => 2,

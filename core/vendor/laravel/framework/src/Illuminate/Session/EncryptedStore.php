@@ -2,9 +2,9 @@
 
 namespace Illuminate\Session;
 
-use SessionHandlerInterface;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Contracts\Encryption\Encrypter as EncrypterContract;
+use SessionHandlerInterface;
 
 class EncryptedStore extends Store
 {
@@ -42,7 +42,7 @@ class EncryptedStore extends Store
         try {
             return $this->encrypter->decrypt($data);
         } catch (DecryptException $e) {
-            return json_encode([]);
+            return serialize([]);
         }
     }
 

@@ -1,10 +1,12 @@
 <?php
 
 return [
-    'login' => 'ورود',
+    'login' => 'ورود به بخش مدیریت',
     'email' => 'ایمیل',
     'password' => 'کلمه عبور',
-    'forget_your_password' => 'فراموشی کلمه عبور',
+    'forget_password' => 'فراموشی کلمه عبور',
+    'password_reset' => 'بازیابی کلمه عبور',
+    'send_password_reset_link' => 'ارسال لینک بازیابی',
     'remember_me' => 'مرا به خاطر بسپار',
     "description" => "توضیحات",
     "not_found" => "متاسفانه صفحه مورد نظر شما پیدا نشد",

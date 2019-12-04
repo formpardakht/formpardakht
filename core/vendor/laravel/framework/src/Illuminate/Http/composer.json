@@ -2,7 +2,7 @@
     "name": "illuminate/http",
     "description": "The Illuminate Http package.",
     "license": "MIT",
-    "homepage": "http://laravel.com",
+    "homepage": "https://laravel.com",
     "support": {
         "issues": "https://github.com/laravel/framework/issues",
         "source": "https://github.com/laravel/framework"
@@ -10,25 +10,32 @@
     "authors": [
         {
             "name": "Taylor Otwell",
-            "email": "taylorotwell@gmail.com"
+            "email": "taylor@laravel.com"
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/session": "5.1.*",
-        "illuminate/support": "5.1.*",
-        "symfony/http-foundation": "2.7.*",
-        "symfony/http-kernel": "2.7.*"
+        "php": "^7.2",
+        "ext-json": "*",
+        "illuminate/session": "^6.0",
+        "illuminate/support": "^6.0",
+        "symfony/http-foundation": "^4.3.4",
+        "symfony/http-kernel": "^4.3.4"
     },
     "autoload": {
         "psr-4": {
             "Illuminate\\Http\\": ""
         }
     },
+    "suggest": {
+        "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image()."
+    },
     "extra": {
         "branch-alias": {
-            "dev-master": "5.1-dev"
+            "dev-master": "6.0-dev"
         }
+    },
+    "config": {
+        "sort-packages": true
     },
     "minimum-stability": "dev"
 }

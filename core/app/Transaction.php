@@ -2,7 +2,9 @@
 
 namespace App;
 
-class Transaction extends BaseModel
+use Illuminate\Database\Eloquent\Model;
+
+class Transaction extends Model
 {
     /**
      * The table associated with the model.
@@ -69,6 +71,9 @@ class Transaction extends BaseModel
         3 => 'فروش فایل',
     ];
 
+    /**
+     * @return mixed
+     */
     public function form()
     {
         if ($this->type == self::$type['form']) {
@@ -78,6 +83,9 @@ class Transaction extends BaseModel
         return null;
     }
 
+    /**
+     * @return mixed
+     */
     public function factor()
     {
         if ($this->type == self::$type['factor']) {
@@ -87,6 +95,9 @@ class Transaction extends BaseModel
         return null;
     }
 
+    /**
+     * @return mixed
+     */
     public function file()
     {
         if ($this->type == self::$type['file']) {

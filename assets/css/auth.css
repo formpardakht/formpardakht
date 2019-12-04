@@ -1,0 +1,12 @@
+@import "fonts.css";
+
+body {
+    direction: rtl;
+    font-family: Vazir, serif;
+    text-align: right;
+}
+
+input[type="email"], input[type="password"] {
+    text-align: left;
+    direction: ltr;
+}

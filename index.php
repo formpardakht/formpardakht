@@ -1,5 +1,13 @@
 <?php
 
+// Check PHP Version
+if(phpversion() < 7.2) {
+    echo '<h1 dir="rtl">برای استفاده از اسکریپت به PHP نسخه 7.2 به بالا نیاز می باشد</h1>';
+    die();
+}
+
+// Generate config.php if not exists
+
 if (!file_exists(__DIR__ . '/core/config.php')) {
     $sampleConfig = require(__DIR__ . '/core/config-sample.php');
     if (file_exists(__DIR__ . '/core/.env')) {
@@ -16,7 +24,7 @@ if (!file_exists(__DIR__ . '/core/config.php')) {
             $sampleConfig[$key] = '"' . $value . '",';
         }
         $sampleConfig['APP_URL'] = '"localhost",';
-        $sampleConfig['DB_HOST'] = '"localhost",';
+        $sampleConfig['DB_HOST'] = '"",';
         $sampleConfig['DB_DATABASE'] = '"",';
         $sampleConfig['DB_USERNAME'] = '"",';
         $sampleConfig['DB_PASSWORD'] = '"",';
@@ -26,11 +34,9 @@ if (!file_exists(__DIR__ . '/core/config.php')) {
     $config = str_replace("[", '"', $config);
     $config = str_replace("]", '"', $config);
     file_put_contents(__DIR__ . '/core/config.php', '<?php return ' . $config . ';');
-
-    if (file_exists(__DIR__ . '/core/.env')) {
-        unlink(__DIR__ . '/core/.env');
-    }
 }
+
+define('LARAVEL_START', microtime(true));
 
 /*
 |--------------------------------------------------------------------------
@@ -40,11 +46,11 @@ if (!file_exists(__DIR__ . '/core/config.php')) {
 | Composer provides a convenient, automatically generated class loader for
 | our application. We just need to utilize it! We'll simply require it
 | into the script here so that we don't have to worry about manual
-| loading any of our classes later on. It feels nice to relax.
+| loading any of our classes later on. It feels great to relax.
 |
 */
 
-require __DIR__ . '/core/bootstrap/autoload.php';
+require __DIR__.'/core/vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +64,7 @@ require __DIR__ . '/core/bootstrap/autoload.php';
 |
 */
 
-$app = require_once __DIR__ . '/core/bootstrap/app.php';
+$app = require_once __DIR__.'/core/bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------

@@ -2,7 +2,9 @@
 
 namespace App;
 
-class Form extends BaseModel
+use Illuminate\Database\Eloquent\Model;
+
+class Form extends Model
 {
     /**
      * The table associated with the model.
@@ -38,6 +40,9 @@ class Form extends BaseModel
         'fields' => 'array',
     ];
 
+    /**
+     * @var array
+     */
     public static $status = [
         'active' => 1,
         'deleted' => 2

@@ -3,9 +3,9 @@
 namespace Illuminate\Auth;
 
 use Illuminate\Auth\Access\Gate;
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Support\ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -17,12 +17,10 @@ class AuthServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerAuthenticator();
-
         $this->registerUserResolver();
-
         $this->registerAccessGate();
-
         $this->registerRequestRebindHandler();
+        $this->registerEventRebindHandler();
     }
 
     /**
@@ -42,7 +40,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         $this->app->singleton('auth.driver', function ($app) {
-            return $app['auth']->driver();
+            return $app['auth']->guard();
         });
     }
 
@@ -53,9 +51,11 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected function registerUserResolver()
     {
-        $this->app->bind(AuthenticatableContract::class, function ($app) {
-            return $app['auth']->user();
-        });
+        $this->app->bind(
+            AuthenticatableContract::class, function ($app) {
+                return call_user_func($app['auth']->userResolver());
+            }
+        );
     }
 
     /**
@@ -67,22 +67,44 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->app->singleton(GateContract::class, function ($app) {
             return new Gate($app, function () use ($app) {
-                return $app['auth']->user();
+                return call_user_func($app['auth']->userResolver());
             });
         });
     }
 
     /**
-     * Register a resolver for the authenticated user.
+     * Handle the re-binding of the request binding.
      *
      * @return void
      */
     protected function registerRequestRebindHandler()
     {
         $this->app->rebinding('request', function ($app, $request) {
-            $request->setUserResolver(function () use ($app) {
-                return $app['auth']->user();
+            $request->setUserResolver(function ($guard = null) use ($app) {
+                return call_user_func($app['auth']->userResolver(), $guard);
             });
+        });
+    }
+
+    /**
+     * Handle the re-binding of the event dispatcher binding.
+     *
+     * @return void
+     */
+    protected function registerEventRebindHandler()
+    {
+        $this->app->rebinding('events', function ($app, $dispatcher) {
+            if (! $app->resolved('auth')) {
+                return;
+            }
+
+            if ($app['auth']->hasResolvedGuards() === false) {
+                return;
+            }
+
+            if (method_exists($guard = $app['auth']->guard(), 'setDispatcher')) {
+                $guard->setDispatcher($dispatcher);
+            }
         });
     }
 }

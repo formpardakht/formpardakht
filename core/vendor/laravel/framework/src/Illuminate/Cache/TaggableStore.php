@@ -2,21 +2,10 @@
 
 namespace Illuminate\Cache;
 
-abstract class TaggableStore
-{
-    /**
-     * Begin executing a new tags operation.
-     *
-     * @param  string  $name
-     * @return \Illuminate\Cache\TaggedCache
-     *
-     * @deprecated since version 5.1. Use tags instead.
-     */
-    public function section($name)
-    {
-        return $this->tags($name);
-    }
+use Illuminate\Contracts\Cache\Store;
 
+abstract class TaggableStore implements Store
+{
     /**
      * Begin executing a new tags operation.
      *

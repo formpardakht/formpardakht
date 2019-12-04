@@ -1,70 +1,113 @@
-<!DOCTYPE html>
-<html>
-
+<html lang="fa">
 <head>
-  <title>FormPardakht Installer</title>
-  <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/bootstrap/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/styles.css') }}">
+    <meta charset="UTF-8">
+    <title>اسکریپت فرم پرداخت پِی</title>
+    <link rel="stylesheet" href="{{ asset('assets/css/install.css') }}">
 </head>
-
 <body>
-<div id="wrapper" class="container py-4">
-  <div class="row">
-    <div class="col">
-      <h1>نصب FormPardakht</h1>
+<div id="app">
+    <div class="container">
+        <header class="navbar">
+            <section class="navbar-section">
+                <a href="https://formpardakht.com" class="navbar-brand mr-2" target="_blank">اسکریپت فرم پرداخت پِی</a>
+            </section>
+            <section class="navbar-section">
+                <a href="https://formpardakht.com/blog/help-v3" class="btn btn-link" target="_blank">راهنمای نصب</a>
+            </section>
+        </header>
     </div>
-  </div>
-  <hr>
-  <br>
-  <form method="post">
-    {{ csrf_field() }}
-    <div class="row">
-      <div class="col">
-        @include('extensions.alert')
-        <div class="form-group">
-          <label for="site_url">آدرس سایت</label>
-          <input type="text" id="site_url" name="site_url" class="form-control ltr" required value="{{ old('site_url') }}"/>
+    <div class="container">
+        <div class="columns">
+            <div class="column col-3"></div>
+            <div class="column col-6">
+                <form method="post" id="form">
+                    @csrf
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title h5">نصب آسان</div>
+                        </div>
+                        <div class="card-body">
+                            <div id="message">
+                                @if (isset($errors) && count($errors) > 0)
+                                    <div class="toast toast-error mb-2">
+                                        {{ $errors->first() }}
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="columns mt-2">
+                                <div class="column col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="txt-url">آدرس سایت</label>
+                                        <input class="form-input ltr" type="text" id="txt-url" placeholder="http://" name="site_url" value="{{ old('site_url') }}">
+                                    </div>
+                                </div>
+                                <div class="column col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="txt-title">عنوان سایت</label>
+                                        <input class="form-input" type="text" id="txt-title" name="site_title" value="{{ old('site_title') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns mt-2">
+                                <div class="column col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="txt-db-host">آدرس دیتابیس</label>
+                                        <input class="form-input ltr" type="text" id="txt-db-host" name="db_host" value="{{ old('db_host') }}">
+                                    </div>
+                                </div>
+                                <div class="column col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="txt-db-name">نام دیتابیس</label>
+                                        <input class="form-input ltr" type="text" id="txt-db-name" name="db_name" value="{{ old('db_name') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns mt-2">
+                                <div class="column col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="txt-db-username">نام کاربری دیتابیس</label>
+                                        <input class="form-input ltr" type="text" id="txt-db-username" name="db_username" value="{{ old('db_username') }}">
+                                    </div>
+                                </div>
+                                <div class="column col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="txt-db-password">کلمه عبور دیتابیس</label>
+                                        <input class="form-input ltr" type="text" id="txt-db-password" name="db_password" value="{{ old('db_password') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="columns">
+                                <div class="column col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="txt-admin-email">آدرس ایمیل مدیر سایت</label>
+                                        <input class="form-input ltr" type="text" id="txt-admin-email" name="admin_email" value="{{ old('admin_email') }}">
+                                    </div>
+                                </div>
+                                <div class="column col-lg-6">
+                                    <div class="form-group">
+                                        <label class="form-label" for="txt-admin-password">کلمه عبور مدیر سایت</label>
+                                        <input class="form-input ltr" type="password" id="txt-admin-password" name="admin_password" value="{{ old('admin_password') }}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button id="btn-submit" type="submit" class="btn btn-primary" name="install" onclick="submitForm()">شروع نصب</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="column col-3"></div>
         </div>
-        <div class="form-group">
-          <label for="site_title">عنوان سایت</label>
-          <input type="text" id="site_title" name="site_title" class="form-control" required value="{{ old('site_title') }}"/>
-        </div>
-        <div class="form-group">
-          <label for="site_description">توضیحات سایت</label>
-          <input type="text" id="site_description" name="site_description" class="form-control" required value="{{ old('site_description') }}"/>
-        </div>
-        <hr>
-        <div class="form-group">
-          <label for="db_host">آدرس دیتابیس</label>
-          <input type="text" id="db_host" name="db_host" class="form-control ltr" required value="{{ old('db_host') ? old('db_host') : 'localhost' }}"/>
-        </div>
-        <div class="form-group">
-          <label for="db_name">نام دیتابیس</label>
-          <input type="text" id="db_name" name="db_name" class="form-control ltr" required value="{{ old('db_name') }}"/>
-        </div>
-        <div class="form-group">
-          <label for="db_username">نام کاربری دیتابیس</label>
-          <input type="text" id="db_username" name="db_username" class="form-control ltr" value="{{ old('db_username') }}"/>
-        </div>
-        <div class="form-group">
-          <label for="db_password">کلمه عبور دیتابیس</label>
-          <input type="text" id="db_password" name="db_password" class="form-control ltr" value="{{ old('db_password') }}"/>
-        </div>
-        <hr>
-        <div class="form-group">
-          <label for="admin_email">ایمیل مدیر</label>
-          <input type="text" id="admin_email" name="admin_email" class="form-control ltr" value="{{ old('admin_email') }}"/>
-        </div>
-        <div class="form-group">
-          <label for="admin_password">کلمه عبور مدیر</label>
-          <input type="text" id="admin_password" name="admin_password" class="form-control ltr" value="{{ old('admin_password') }}"/>
-        </div>
-      </div>
     </div>
-    <br>
-    <button type="submit" class="btn btn-success" name="submit">نصب</button>
-  </form>
 </div>
+<script>
+    function submitForm() {
+        document.getElementById('btn-submit').disabled = true;
+        document.getElementById('btn-submit').innerText = 'لطفا صبر کنید...';
+        document.getElementById('message').innerHTML = "<div class='toast toast-primary mb-2'>اسکریپت در حال نصب می باشد. عملیات نصب ممکن است چند دقیقه طول بکشد.</div>";
+        document.getElementById('form').submit();
+    }
+</script>
 </body>
-
 </html>

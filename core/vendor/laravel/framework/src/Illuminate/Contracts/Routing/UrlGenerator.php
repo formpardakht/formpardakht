@@ -5,11 +5,26 @@ namespace Illuminate\Contracts\Routing;
 interface UrlGenerator
 {
     /**
-     * Generate a absolute URL to the given path.
+     * Get the current URL for the request.
+     *
+     * @return string
+     */
+    public function current();
+
+    /**
+     * Get the URL for the previous request.
+     *
+     * @param  mixed  $fallback
+     * @return string
+     */
+    public function previous($fallback = false);
+
+    /**
+     * Generate an absolute URL to the given path.
      *
      * @param  string  $path
      * @param  mixed  $extra
-     * @param  bool  $secure
+     * @param  bool|null  $secure
      * @return string
      */
     public function to($path, $extra = [], $secure = null);
@@ -24,10 +39,10 @@ interface UrlGenerator
     public function secure($path, $parameters = []);
 
     /**
-     * Generate a URL to an application asset.
+     * Generate the URL to an application asset.
      *
      * @param  string  $path
-     * @param  bool    $secure
+     * @param  bool|null  $secure
      * @return string
      */
     public function asset($path, $secure = null);
@@ -47,7 +62,7 @@ interface UrlGenerator
     /**
      * Get the URL to a controller action.
      *
-     * @param  string  $action
+     * @param  string|array  $action
      * @param  mixed $parameters
      * @param  bool $absolute
      * @return string

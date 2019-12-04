@@ -2,7 +2,9 @@
 
 namespace App;
 
-class File extends BaseModel
+use Illuminate\Database\Eloquent\Model;
+
+class File extends Model
 {
     /**
      * The table associated with the model.
@@ -39,6 +41,9 @@ class File extends BaseModel
         'fields' => 'array',
     ];
 
+    /**
+     * @var array
+     */
     public static $status = [
         'active' => 1,
         'deleted' => 2

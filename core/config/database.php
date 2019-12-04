@@ -1,19 +1,8 @@
 <?php
 
+use Illuminate\Support\Str;
+
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | PDO Fetch Style
-    |--------------------------------------------------------------------------
-    |
-    | By default, database results will be returned as instances of the PHP
-    | stdClass object; however, you may desire to retrieve records in an
-    | array format for simplicity. Here you can tweak the fetch style.
-    |
-    */
-
-    'fetch' => PDO::FETCH_CLASS,
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +15,7 @@ return [
     |
     */
 
-    'default' => app('site_configs')['DB_CONNECTION'],
+    'default' => 'mysql',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,46 +34,25 @@ return [
     */
 
     'connections' => [
-
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'database' => database_path('database.sqlite'),
-            'prefix' => '',
-        ],
-
         'mysql' => [
             'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
             'host' => app('site_configs')['DB_HOST'],
+            'port' => '3306',
             'database' => app('site_configs')['DB_DATABASE'],
             'username' => app('site_configs')['DB_USERNAME'],
             'password' => app('site_configs')['DB_PASSWORD'],
-            'charset' => 'utf8',
-            'collation' => 'utf8_unicode_ci',
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
-            'strict' => false,
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
         ],
-
-        'pgsql' => [
-            'driver' => 'pgsql',
-            'host' => app('site_configs')['DB_HOST'],
-            'database' => app('site_configs')['DB_DATABASE'],
-            'username' => app('site_configs')['DB_USERNAME'],
-            'password' => app('site_configs')['DB_PASSWORD'],
-            'charset' => 'utf8',
-            'prefix' => '',
-            'schema' => 'public',
-        ],
-
-        'sqlsrv' => [
-            'driver' => 'sqlsrv',
-            'host' => app('site_configs')['DB_HOST'],
-            'database' => app('site_configs')['DB_DATABASE'],
-            'username' => app('site_configs')['DB_USERNAME'],
-            'password' => app('site_configs')['DB_PASSWORD'],
-            'charset' => 'utf8',
-            'prefix' => '',
-        ],
-
     ],
 
     /*
@@ -99,29 +67,4 @@ return [
     */
 
     'migrations' => 'migrations',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Redis Databases
-    |--------------------------------------------------------------------------
-    |
-    | Redis is an open source, fast, and advanced key-value store that also
-    | provides a richer set of commands than a typical key-value systems
-    | such as APC or Memcached. Laravel makes it easy to dig right in.
-    |
-    */
-
-    'redis' => [
-
-        'cluster' => false,
-
-        'default' => [
-            'host' => 'localhost',
-            'password' => null,
-            'port' => 6379,
-            'database' => 0,
-        ],
-
-    ],
-
 ];
