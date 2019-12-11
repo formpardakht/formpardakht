@@ -32,7 +32,6 @@ class InstallController extends Controller
             'db_host' => 'required',
             'db_name' => 'required',
             'db_username' => 'required',
-            'db_password' => 'required',
             'admin_email' => 'required|email',
             'admin_password' => 'required|min:6',
         ];
