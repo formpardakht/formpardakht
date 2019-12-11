@@ -20,7 +20,7 @@ class ConfigsTableSeeder extends Seeder
         Config::create([
             'key' => 'live_stats',
             'value' => false,
-            'label' => lang('lang.live_stats'),
+            'label' => __('lang.live_stats'),
             'visible' => 0
         ]);
     }

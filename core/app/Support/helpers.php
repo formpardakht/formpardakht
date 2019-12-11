@@ -134,15 +134,6 @@ function theme_asset($url, $secure = null)
     return asset('themes/' . site_config('theme') . '/' . $url, $secure);
 }
 
-function lang($key)
-{
-    if (\Lang::has('fp::' . $key)) {
-        return trans('fp::' . $key);
-    }
-
-    return trans($key);
-}
-
 function date_diff_in_minutes(\Carbon\Carbon $start, \Carbon\Carbon $finish)
 {
     $totalDuration = $start->diffInMinutes($finish);

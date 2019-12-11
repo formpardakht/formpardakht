@@ -26,7 +26,7 @@ trait CompilesTranslations
      *
      * @return string
      */
-    protected function compileEndlang()
+    protected function compileEnd__()
     {
         return '<?php echo $__env->renderTranslation(); ?>';
     }
