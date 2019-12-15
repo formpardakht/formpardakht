@@ -133,4 +133,5 @@ return [
     "form_size_lg" => "بزرگ",
     "form_size_md" => "متوسط",
     "form_size_sm" => "کوچک",
+    "reset_password" => "بازیابی کلمه عبور",
 ];

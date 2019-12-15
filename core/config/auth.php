@@ -60,7 +60,7 @@ return [
 
     'password' => [
         'email'  => 'emails.password',
-        'table'  => 'password_resets',
+        'table'  => 'fp_password_resets',
         'expire' => 60,
     ],
 

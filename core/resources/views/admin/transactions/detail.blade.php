@@ -78,13 +78,13 @@
             <a href="{{ route('file', ['id' => $transaction->file()->id]) }}" target="_blank">{{ $transaction->file()->title }}</a>
           </td>
         </tr>
-        @if($transaction->details && isset($transaction->details['form_fields']))
+        @if($transaction->details && isset($transaction->details['file_fields']))
           <tr>
             <td>
               {{ lang('lang.inputs') }}
             </td>
             <td>
-              @foreach ($transaction->details['form_fields'] as $input)
+              @foreach ($transaction->details['file_fields'] as $input)
                 <b>{{ $input['label'] }} : </b> {{ $input['value'] }} <br>
               @endforeach
             </td>
