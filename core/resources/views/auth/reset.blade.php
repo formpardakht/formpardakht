@@ -10,6 +10,7 @@
                         <form method="POST" action="{{ route('password.reset') }}">
                             {{ csrf_field() }}
                             @include('fp::extensions.alert')
+                            <input type="hidden" name="token" value="{{ $token }}">
                             <div class="form-group">
                                 <label for="email">{{ lang('lang.email') }}</label>
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
