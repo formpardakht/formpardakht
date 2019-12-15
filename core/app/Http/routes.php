@@ -12,6 +12,10 @@ Route::group(['middleware' => 'check-installation'], function () {
     Route::get('login', 'Auth\AuthController@getLogin')->name('login');
     Route::post('login', 'Auth\AuthController@postLogin');
     Route::get('logout', 'Auth\AuthController@getLogout')->name('logout');
+    Route::get('password/email', 'Auth\PasswordController@getEmail')->name('password.email');
+    Route::post('password/email', 'Auth\PasswordController@postEmail');
+    Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+    Route::post('password/reset', 'Auth\PasswordController@postReset')->name('password.reset');
 
     Route::get('/', 'FormController@index')->name('home-index');
     Route::get('form/{id?}', 'FormController@index')->name('form');

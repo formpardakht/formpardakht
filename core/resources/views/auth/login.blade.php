@@ -30,6 +30,7 @@
                 <button type="submit" class="btn btn-primary">
                   {{ lang('lang.login') }}
                 </button>
+                <a href="{{ route('password.email') }}" style="margin-right: 10px">{{ lang('lang.forget_your_password') }}</a>
               </div>
             </form>
           </div>
