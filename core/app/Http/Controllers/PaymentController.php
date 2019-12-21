@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Http\Request;
 use App\Transaction;
 use App\PaymentProviders\PSP\Payir;
 use Illuminate\Support\Facades\DB;
-use Validator;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @throws \Exception
+     */
     public function callbackPayir(Request $request)
     {
         $rules = [
@@ -62,6 +68,8 @@ class PaymentController extends Controller
                             }
                             \DB::commit();
 
+                            $this->sendMail($transaction);
+
                             return $this->showReceipt($transaction);
                         }
                     }
@@ -71,10 +79,16 @@ class PaymentController extends Controller
 
             return $this->showReceipt($transaction);
         } catch (\Exception $e) {
+            DB::rollBack();
             throw $e;
         }
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function pay(Request $request, $id)
     {
         $request->request->add(['id' => $id]);
@@ -91,6 +105,10 @@ class PaymentController extends Controller
         return $this->payWithPayir($transaction);
     }
 
+    /**
+     * @param Transaction $transaction
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     private function payWithPayir(Transaction $transaction)
     {
         $paymentProvider = new Payir();
@@ -110,9 +128,33 @@ class PaymentController extends Controller
             ->with('message', isset($paymentProvider->errorMessage) ? $paymentProvider->errorMessage : 'Error');
     }
 
+    /**
+     * @param Transaction $transaction
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     private function showReceipt(Transaction $transaction)
     {
         return view('fp::home.receipt')
             ->with('transaction', $transaction);
+    }
+
+    /**
+     * @param Transaction $transaction
+     * @throws \Exception
+     */
+    private function sendMail(Transaction $transaction)
+    {
+        $user = User::first();
+        if ($user) {
+            try {
+                Mail::send('emails.transaction', ['user' => $user, 'transaction' => $transaction], function ($m) use ($user) {
+                    $m->to($user->email, $user->name)->subject(lang('lang.new_transaction'));
+                });
+            } catch (\Exception $e) {
+                if (app('site_configs')['APP_ENV'] === 'local') {
+                    throw $e;
+                }
+            }
+        }
     }
 }

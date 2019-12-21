@@ -134,4 +134,7 @@ return [
     "form_size_md" => "متوسط",
     "form_size_sm" => "کوچک",
     "reset_password" => "بازیابی کلمه عبور",
+    "factor_is_paid" => "پرداخت شده",
+    "new_transaction" => "تراکنش جدید",
+    "view" => "مشاهده",
 ];
