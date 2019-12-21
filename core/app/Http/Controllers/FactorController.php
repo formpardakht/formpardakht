@@ -11,7 +11,7 @@ class FactorController extends Controller
     public function index($id = null)
     {
         if ($id) {
-            $factor = Factor::where('id', '=', $id)->where('status', '=', Factor::$status['active'])->where('paid', '=', 0)->first();
+            $factor = Factor::where('id', '=', $id)->where('status', '=', Factor::$status['active'])->first();
 
             if ($factor) {
                 return view('fp::home.factor.index')
