@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group">
                             <label for="txt-description" class="label">{{ lang('lang.description') }} ({{ lang('lang.optional') }})</label>
-                            <textarea name="description" id="txt-description">{!! $form->description !!}</textarea>
+                            <textarea name="description" id="txt-description">{!! $file->description !!}</textarea>
                             @include('extensions.editor', ['element' => '#txt-description'])
                         </div>
                         <div class="form-group">
